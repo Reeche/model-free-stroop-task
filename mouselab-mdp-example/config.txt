@@ -1,0 +1,49 @@
+[HIT Configuration]
+title = Example JsPsych Psiturk Experiment
+description = For educational purposes
+amt_keywords = psychology, experiment
+lifetime = 24
+us_only = false
+# set a reasonable approve_requirement (e.g. 95), 0 is for testing purposes only
+approve_requirement = 0
+contact_email_on_error = re-mturk@tuebingen.mpg.de
+ad_group = psychology
+organization_name = Max Planck Institute
+browser_exclude_rule = MSIE, mobile, tablet
+allow_repeats = true
+
+[Database Parameters]
+database_url = sqlite:///participants.db
+table_name = participants
+
+[Server Parameters]
+host = 0.0.0.0
+port = 22361
+cutoff_time = 60
+logfile = server.log
+loglevel = 2
+login_username = user
+login_pw = pq
+threads = 1
+secret_key = 'this is my secret key which is hard to guess, i should change this'
+# adserver_revproxy_host = mouselab-mdp-example.herokuapp.com
+
+[Task Parameters]
+experiment_code_version = 1.0
+num_conds = 3
+num_counters = 1
+
+[Shell Parameters]
+launch_in_sandbox_mode = true
+bonus_message = "Thanks for participating!"
+
+[psiTurk Access]
+psiturk_access_key_id = Rpe3tYQ22d4U55vKCSU7Vo
+psiturk_secret_access_id = 3sAVnHmPghEtwhkuVo38iN
+
+# If you are not using the psiturk ad server, set `use_psiturk_ad_server` to `false` and point `ad_location` to your proxy server <host> and <port>. Format the ad_location like this:
+#
+#   https://<host>:<port>/ad 
+
+use_psiturk_ad_server = true
+ad_location = false
