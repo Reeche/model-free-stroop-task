@@ -115,7 +115,6 @@ $(window).on('load', function () {
             //random = Math.floor(Math.random() * TRIALS_TRAINING.length);
             //console.log(" ----- Selected condition  -----", random)
             // 1 is decreasing, 0 is increasing, 2 is constant
-            // todo: log the condition!!!
             var idx, t;
             t = _.shuffle(TRIALS_TRAINING[0]);
             idx = 0;
@@ -125,11 +124,6 @@ $(window).on('load', function () {
             };
         })();
         getTrainingTrialsDecreasing = (function () {
-            // randomly choose one object out of the array
-            //random = Math.floor(Math.random() * TRIALS_TRAINING.length);
-            //console.log(" ----- Selected condition  -----", random)
-            // 1 is decreasing, 0 is increasing, 2 is constant
-            // todo: log the condition!!!
             var idx, t;
             t = _.shuffle(TRIALS_TRAINING[1]);
             idx = 0;
@@ -139,11 +133,6 @@ $(window).on('load', function () {
             };
         })();
         getTrainingTrialsConstant = (function () {
-            // randomly choose one object out of the array
-            //random = Math.floor(Math.random() * TRIALS_TRAINING.length);
-            //console.log(" ----- Selected condition  -----", random)
-            // 1 is decreasing, 0 is increasing, 2 is constant
-            // todo: log the condition!!!
             var idx, t;
             t = _.shuffle(TRIALS_TRAINING[2]);
             idx = 0;
@@ -531,7 +520,7 @@ Please answer the following questions about the *Web of Cash* game.
                 if (reprompt != null) {
                     window.clearInterval(reprompt);
                 }
-                return psiturk.computeBonus('compute_bonus', psiturk.completeHIT);
+                return psiturk.completeHIT();
             },
             error: function () {
                 return prompt_resubmit;
