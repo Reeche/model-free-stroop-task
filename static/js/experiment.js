@@ -6,9 +6,10 @@ var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_I
     getTrainingTrialsConstant, getTrialsWithInnerRevealed,
     initializeExperiment, loadTimeout, psiturk, saveData, slowLoad;
 
-DEBUG = true; // change this to false before running the experiment
+DEBUG = false; // change this to false before running the experiment
 
-CONDITION = 0; // 0 or 1 todo: how to change for online experiment so that is automatically randomly assigns conditions?
+CONDITION = parseInt(condition);
+//CONDITION = 0; // 0 or 1
 
 JUMP_TO_BLOCK = 0;
 
