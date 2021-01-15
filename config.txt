@@ -45,5 +45,6 @@ psiturk_secret_access_id = 3sAVnHmPghEtwhkuVo38iN
 #
 #   https://<host>:<port>/ad 
 
-use_psiturk_ad_server = true
-ad_location = false
+use_psiturk_ad_server = https://threecond-eu.herokuapp.com
+# ad_location = false
+use_psiturk_ad_server = false
