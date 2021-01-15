@@ -506,6 +506,11 @@ Please answer the following questions about the *Web of Cash* game.
         experiment_timeline = [instruct_loop, training_trial_constant, survey, finish];
     }
     experiment_timeline = experiment_timeline.slice(JUMP_TO_BLOCK);
+
+
+    // ================================================ #
+    // ========= START AND END THE EXPERIMENT ========= #
+    // ================================================ #
     calculateBonus = function () {
         var bonus;
         bonus = SCORE * PARAMS.bonusRate;
@@ -541,9 +546,6 @@ Press the button to resubmit.
             return save_data();
         });
     };
-    // ================================================ #
-    // ========= START AND END THE EXPERIMENT ========= #
-    // ================================================ #
     return jsPsych.init({
         display_element: $('#jspsych-target'),
         timeline: experiment_timeline,
