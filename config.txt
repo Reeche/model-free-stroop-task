@@ -14,11 +14,11 @@ browser_exclude_rule = MSIE, mobile, tablet
 allow_repeats = true
 
 [Database Parameters]
-#database_url = sqlite:///participants.db
-#table_name = participants
-
-database_url = postgres://jiwwnghuootcdi:5a4cd0b92b76cb1bcebcb2e30c8156f6385c1318a20c481509e8be6cfce94822@ec2-54-220-229-215.eu-west-1.compute.amazonaws.com:5432/d2ouqpth0r7r62
+database_url = sqlite:///participants.db
 table_name = participants
+
+#database_url = postgres://jiwwnghuootcdi:5a4cd0b92b76cb1bcebcb2e30c8156f6385c1318a20c481509e8be6cfce94822@ec2-54-220-229-215.eu-west-1.compute.amazonaws.com:5432/d2ouqpth0r7r62
+#table_name = participants
 
 [Server Parameters]
 host = 0.0.0.0
@@ -27,10 +27,11 @@ cutoff_time = 60
 logfile = server.log
 loglevel = 2
 login_username = user
-login_pw = pq
+login_pw = pw
 threads = 1
 secret_key = 'this is my secret key which is hard to guess, i should change this'
 # adserver_revproxy_host = mouselab-mdp-example.herokuapp.com
+
 
 [Task Parameters]
 experiment_code_version = threecond_1.0
