@@ -559,7 +559,7 @@ Press the button to resubmit.
             }
         },
         on_data_update: function (data) {
-            return console.log('data', data);
+            console.log('data', data);
             return psiturk.recordTrialData(data);
         }
     });
