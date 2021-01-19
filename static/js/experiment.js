@@ -507,6 +507,36 @@ Please answer the following questions about the *Web of Cash* game.
     }
     experiment_timeline = experiment_timeline.slice(JUMP_TO_BLOCK);
 
+    flatten_timeline = function(timeline){
+        var global_timeline = [];
+
+        for(var i in timeline){
+            t = timeline[i];
+
+            if(t.timeline !== undefined){
+                //recursive for sub timelines
+                global_timeline.push( flatten_timeline( t.timeline ));
+            } else {
+                // its a real block
+                if(t.type !== undefined){
+                    info = t.type;
+
+                    if(t.questions !== undefined){
+                        info = info + ' : ' + t.questions.toString();
+                    }
+                    global_timeline.push( info);
+
+                } else if (t.trial_id !== undefined){
+                    global_timeline.push( 'Mouselab : ' + t.trial_id)
+                }
+
+            }
+        }
+        global_timeline = [global_timeline.flat(1)];
+        return(global_timeline);
+    }
+    psiturk.recordUnstructuredData('global_timeline', JSON.stringify(flatten_timeline(experiment_timeline)) );
+    //console.log( JSON.stringify(flatten_timeline(experiment_timeline)) );
 
     // ================================================ #
     // ========= START AND END THE EXPERIMENT ========= #
