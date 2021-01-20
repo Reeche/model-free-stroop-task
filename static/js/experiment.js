@@ -521,9 +521,9 @@ Please answer the following questions about the *Web of Cash* game.
                 if(t.type !== undefined){
                     info = t.type;
 
-                    if(t.questions !== undefined){
-                        info = info + ' : ' + t.questions.toString();
-                    }
+                    //if(t.questions !== undefined){
+                        //info = info + ' : ' + t.questions.toString();
+                    //}
                     global_timeline.push( info);
 
                 } else if (t.trial_id !== undefined){
