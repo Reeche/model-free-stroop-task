@@ -31,12 +31,10 @@ getTrialsWithInnerRevealed = void 0;
 
 getActionTrials = void 0;
 
-PARAMS = [
-    {
+PARAMS = {
         inspectCost: 1,
-        bonusRate: .002
-    }
-];
+        bonusRate: 0.002
+    };
 
 _.mapObject = mapObject;
 
@@ -291,15 +289,17 @@ Move with the arrow keys.</b>`;
         preamble: function () {
             return markdown(`# You've completed the HIT
 
-Thanks for participating. We hope you had fun! Based on your
-performance in Stage 1 and Stage 2, you will be awarded a bonus of
-**$${calculateBonus().toFixed(2)}** on top of your base pay of $1.90.
-
+Thanks for participating. 
+\n We hope you had fun! Based on your
+performance, you will be awarded a bonus of
+**$${calculateBonus().toFixed(2)}** on top of your base pay of $1.50. 
+\n Secret completion code: TBD
+\n
 Please briefly answer the questions below before you submit the HIT.`);
         },
         //'How did you go about planning the path of the spider?'
         //'Did you learn anything about how to plan better?'
-        questions: ['How old are you?', 'Which gender do you identify with?'],
+        questions: ['How old are you?', 'Which gender do you identify with?', 'Do you have additional comments?'],
         rows: [4, 4, 1, 1],
         button: 'Submit HIT'
     });
@@ -334,7 +334,7 @@ Please briefly answer the questions below before you submit the HIT.`);
                     "\n- There will be 20 rounds and on every round the rewards on the web will be different. " +
                     "So you have to make a new plan every time.\n"),
                 markdown(`## Practice makes perfect\n\n- You can get better at planning through practice.
-            \n- The better you perform, the higher your bonus will be.
+            \n- You will receive a base pay of $1.50 and the better you perform, the higher your bonus will be.
             \n`), markdown("## Quiz\n\nBefore you can begin playing *Web of Cash*, you must pass a quiz to show\nthat you understand the rules. If you get any of the questions" +
                     "\nincorrect, you will be brought back to the instructions to review and\ntry the quiz again.")];
         }
@@ -543,8 +543,12 @@ Please answer the following questions about the *Web of Cash* game.
     // ================================================ #
     calculateBonus = function () {
         var bonus;
+        console.log("Score", SCORE);
+        console.log("bonus rate", PARAMS.bonusRate);
         bonus = SCORE * PARAMS.bonusRate;
+        console.log("Bonus 1", bonus);
         bonus = (Math.round(bonus * 100)) / 100; // round to nearest cent
+        console.log("Bonus 2", bonus);
         return Math.max(0, bonus);
     };
     reprompt = null;
@@ -595,3 +599,4 @@ Press the button to resubmit.
     });
 };
 
+//todo: add something that automatically closes the window after finishing experiment
