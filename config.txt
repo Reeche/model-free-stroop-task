@@ -1,6 +1,6 @@
 [HIT Configuration]
-title = Example JsPsych Psiturk Experiment
-description = For educational purposes
+title = Web of Cash
+description = Earn money by navigating through a spider web in this psychology experiment
 amt_keywords = psychology, experiment
 lifetime = 24
 us_only = true
@@ -11,7 +11,7 @@ ad_group = Default psiTurk
 psiturk_keywords = web-of-cash
 organization_name = Max Planck Institute
 browser_exclude_rule = MSIE, mobile, tablet
-allow_repeats = true
+allow_repeats = false
 
 [Database Parameters]
 #database_url = sqlite:///participants.db

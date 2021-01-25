@@ -293,7 +293,7 @@ Thanks for participating.
 \n We hope you had fun! Based on your
 performance, you will be awarded a bonus of
 **$${calculateBonus().toFixed(2)}** on top of your base pay of $1.50. 
-\n Secret completion code: TBD
+\n Secret completion code: RNGV6VGE
 \n
 Please briefly answer the questions below before you submit the HIT.`);
         },
@@ -385,7 +385,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsIncreasing(2);
+            return getTrainingTrialsIncreasing(20);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -403,7 +403,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsDecreasing(2);
+            return getTrainingTrialsDecreasing(20);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -421,7 +421,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsConstant(2);
+            return getTrainingTrialsConstant(20);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
