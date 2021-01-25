@@ -292,7 +292,7 @@ Move with the arrow keys.</b>`;
 Thanks for participating. 
 \n We hope you had fun! Based on your
 performance, you will be awarded a bonus of
-**$${calculateBonus().toFixed(2)}** on top of your base pay of $1.50. 
+**$${calculateBonus().toFixed(2)}** on top of your base pay of $0.50. 
 \n Secret completion code: RNGV6VGE
 \n
 Please briefly answer the questions below before you submit the HIT.`);
