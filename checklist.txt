@@ -1,0 +1,10 @@
+A checklist before deployment / going live with the experiment:
+
+** In the config.txt
+* Check database string
+* Check allow_repeats
+* Check experiment_code_version and number of conditions
+
+** in experiment.js
+* Check Debug mode
+* Check the number for basepay
