@@ -17,7 +17,12 @@ allow_repeats = false
 #database_url = sqlite:///participants.db
 #table_name = participants
 
-database_url = postgres://ajlxfqvgiueglq:1fae48960483472204090a0ea4911533361ebee127f1d1d32c7f30a788f01a2e@ec2-54-220-229-215.eu-west-1.compute.amazonaws.com:5432/d5lcbukdaspu3q
+# test postgres
+#database_url = postgres://ajlxfqvgiueglq:1fae48960483472204090a0ea4911533361ebee127f1d1d32c7f30a788f01a2e@ec2-54-220-229-215.eu-west-1.compute.amazonaws.com:5432/d5lcbukdaspu3q
+#table_name = participants
+
+# mouselab postgres
+database_url = postgres://yfocikxnxzrsyx:a2650e7f24258f8fcb3cd0f7cf329a4f2b238b254f4fc0252aa65fa8f1125f30@ec2-54-247-107-109.eu-west-1.compute.amazonaws.com:5432/ddfku1b5k7j56b
 table_name = participants
 
 [Server Parameters]
