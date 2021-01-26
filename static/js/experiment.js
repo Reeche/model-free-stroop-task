@@ -6,7 +6,7 @@ var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_I
     getTrainingTrialsConstant, getTrialsWithInnerRevealed,
     initializeExperiment, loadTimeout, psiturk, saveData, slowLoad;
 
-DEBUG = false; // change this to false before running the experiment
+DEBUG = true; // change this to false before running the experiment
 
 CONDITION = parseInt(condition);
 //CONDITION = 0; // 0 or 1
