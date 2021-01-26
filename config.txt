@@ -50,5 +50,5 @@ bonus_message = "Thanks for participating!"
 #
 #   https://<host>:<port>/ad 
 
-ad_location = https://threecond-eu.herokuapp.com
+ad_location = https://threecond-eu.herokuapp.com/pub
 use_psiturk_ad_server = false
