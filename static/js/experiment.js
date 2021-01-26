@@ -369,7 +369,7 @@ Please answer the following questions about the *Web of Cash* game.
             ref = data[1].correct;
             for (i = 0, len = ref.length; i < len; i++) {
                 c = ref[i];
-                if (!c && !DEBUG) {
+                if (!c) {
                     alert("You got at least one question wrong. We'll send you back to the\ninstructions and then you can try again.");
                     return true; // try again
                 }
@@ -586,7 +586,9 @@ Press the button to resubmit.
         // show_progress_bar: true
         on_finish: function () {
             if (DEBUG) {
-                return jsPsych.data.displayData();
+                psiturk.recordUnstructuredData('final_bonus', calculateBonus());
+                return save_data();
+                //return jsPsych.data.displayData();
             } else {
                 psiturk.recordUnstructuredData('final_bonus', calculateBonus());
                 return save_data();
