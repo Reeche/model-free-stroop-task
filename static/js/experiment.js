@@ -6,7 +6,7 @@ var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_I
     getTrainingTrialsConstant, getTrialsWithInnerRevealed,
     initializeExperiment, loadTimeout, psiturk, saveData, slowLoad;
 
-DEBUG = true; // change this to false before running the experiment
+DEBUG = false; // change this to false before running the experiment
 
 CONDITION = parseInt(condition);
 //CONDITION = 0; // 0 or 1
@@ -51,10 +51,10 @@ slowLoad = function () {
 
 loadTimeout = delay(12000, slowLoad);
 
-if (DEBUG) {
-    CONDITION = parseInt(window.prompt('condition 0-2', 0));
-    //JUMP_TO_BLOCK = window.prompt('skip to block number?', 0);
-}
+// if (DEBUG) {
+//     CONDITION = parseInt(window.prompt('condition 0-2', 0));
+//     //JUMP_TO_BLOCK = window.prompt('skip to block number?', 0);
+// }
 
 createStartButton = function () {
     document.getElementById('loader').style.display = 'none';
