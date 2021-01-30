@@ -292,8 +292,8 @@ Move with the arrow keys.</b>`;
 Thanks for participating. 
 \n We hope you had fun! Based on your
 performance, you will be awarded a bonus of
-**$${calculateBonus().toFixed(2)}** on top of your base pay of $0.50. 
-\n Secret completion code: RNGV6VGE
+**$${calculateBonus().toFixed(2)}** on top of your base pay of $1.50. 
+\n Secret completion code: RNGV6VGF
 \n
 Please briefly answer the questions below before you submit the HIT.`);
         },
@@ -331,10 +331,10 @@ Please briefly answer the questions below before you submit the HIT.`);
                 markdown("## Rewards and Costs\n- Each node of the web either contains a reward of up to <b><font color='green'>$48</font></b> or a loss of up to <b><font color='red'>$-48</font></b>" +
                     "\n- You can find out about a node's loss or reward by using the node inspector.\n- The fee for using the node inspector is <b>$1 per click</b>.\n\n- You will start with **$50**"),
                 markdown("## Additional Information\n\n<img class='display' style=\"width:50%; height:auto\" src='static/images/web-of-cash.png'/>" +
-                    "\n- There will be 20 rounds and on every round the rewards on the web will be different. " +
+                    "\n- There will be 35 rounds and on every round the rewards on the web will be different. " +
                     "So you have to make a new plan every time.\n"),
                 markdown(`## Practice makes perfect\n\n- You can get better at planning through practice.
-            \n- You will receive a base pay of $0.50 and the better you perform, the higher your bonus will be.
+            \n- You will receive a base pay of $1.50 and the better you perform, the higher your bonus will be.
             \n`), markdown("## Quiz\n\nBefore you can begin playing *Web of Cash*, you must pass a quiz to show\nthat you understand the rules. If you get any of the questions" +
                     "\nincorrect, you will be brought back to the instructions to review and\ntry the quiz again.")];
         }
@@ -385,7 +385,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsIncreasing(20);
+            return getTrainingTrialsIncreasing(35);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -403,7 +403,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsDecreasing(20);
+            return getTrainingTrialsDecreasing(35);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -421,7 +421,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsConstant(20);
+            return getTrainingTrialsConstant(35);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -600,5 +600,3 @@ Press the button to resubmit.
         }
     });
 };
-
-//todo: add something that automatically closes the window after finishing experiment
