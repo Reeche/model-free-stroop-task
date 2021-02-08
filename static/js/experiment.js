@@ -6,7 +6,7 @@ var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_I
     getTrainingTrialsConstant, getTrialsWithInnerRevealed,
     initializeExperiment, loadTimeout, psiturk, saveData, slowLoad;
 
-DEBUG = false; // change this to false before running the experiment
+DEBUG = true; // change this to false before running the experiment
 
 CONDITION = parseInt(condition);
 //CONDITION = 0; // 0 or 1
@@ -32,9 +32,9 @@ getTrialsWithInnerRevealed = void 0;
 getActionTrials = void 0;
 
 PARAMS = {
-        inspectCost: 1,
-        bonusRate: 0.002
-    };
+    inspectCost: 1,
+    bonusRate: 0.002
+};
 
 _.mapObject = mapObject;
 
@@ -257,7 +257,7 @@ Move with the arrow keys.</b>`;
     QuizLoop = class QuizLoop extends Block {
         loop_function(data) {
             var c, i, len, ref;
-            console.log('data', data);
+            //console.log('data', data);
             ref = data[data.length].correct;
             for (i = 0, len = ref.length; i < len; i++) {
                 c = ref[i];
@@ -321,7 +321,8 @@ Please briefly answer the questions below before you submit the HIT.`);
         show_clickable_nav: true,
         pages: function () {
             return [markdown(" <h1> Web of Cash </h1>\n\n In this HIT, you will play a game called *Web of Cash*. You will guide a\n money-loving spider through a spider web. " +
-                "When you land on a gray circle\n (a ***node***) the value of the node is added to your score.\n\n You will be able to move the spider with the arrow keys, " +
+                "Each gray circle\n (called a ***node***) has its own value. At the end of each trial, the value of the nodes will be summed up and added to your score. " +
+                "\n\n You will be able to move the spider with the arrow keys, " +
                 "but only in the direction\n of the arrows between the nodes. The image below shows the web that you will be navigating when the game starts." +
                 "\n\n<img class='display' style=\"width:50%; height:auto\" src='static/images/web-of-cash-unrevealed.png'/>\n"),
                 markdown("## Node Inspector\n\nIt's hard to make good decision when you can't see what you will get!\nFortunately, " +
@@ -329,7 +330,9 @@ Please briefly answer the questions below before you submit the HIT.`);
                     "simply ***click on a node***. The image below illustrates how this works.\n\n**Note:** You can only use the node inspector when you're on the first\nnode." +
                     "\n\n<img class='display' style=\"width:50%; height:auto\" src='static/images/web-of-cash.png'/>\n\n"),
                 markdown("## Rewards and Costs\n- Each node of the web either contains a reward of up to <b><font color='green'>$48</font></b> or a loss of up to <b><font color='red'>$-48</font></b>" +
-                    "\n- You can find out about a node's loss or reward by using the node inspector.\n- The fee for using the node inspector is <b>$1 per click</b>.\n\n- You will start with **$50**"),
+                    "\n- You can find out about a node's loss or reward by using the node inspector.\n- The fee for using the node inspector is <b>$1 per click</b>. " +
+                    "\n- After each round your reward will be calculated, which is the sum of the reward of each node that you have passed on your route." +
+                    "\n\n- You will start with **$50**"),
                 markdown("## Additional Information\n\n<img class='display' style=\"width:50%; height:auto\" src='static/images/web-of-cash.png'/>" +
                     "\n- There will be 35 rounds and on every round the rewards on the web will be different. " +
                     "So you have to make a new plan every time.\n"),
@@ -385,7 +388,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsIncreasing(35);
+            return getTrainingTrialsIncreasing(3);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -403,7 +406,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsDecreasing(35);
+            return getTrainingTrialsDecreasing(3);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -421,7 +424,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsConstant(35);
+            return getTrainingTrialsConstant(3);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -498,44 +501,56 @@ Please answer the following questions about the *Web of Cash* game.
 
     // here you set which experiments snippets will be run
     console.log("SELECTED CONDITION", CONDITION)
-    if (CONDITION === 0) {
-        experiment_timeline = [instruct_loop, training_trial_increasing, survey, finish];
-    } else if (CONDITION === 1) {
-        experiment_timeline = [instruct_loop, training_trial_decreasing, survey, finish];
-    } else if (CONDITION === 2) {
-        experiment_timeline = [instruct_loop, training_trial_constant, survey, finish];
+    if (debug = false) {
+        if (CONDITION === 0) {
+            experiment_timeline = [instruct_loop, training_trial_increasing, survey, finish];
+        } else if (CONDITION === 1) {
+            experiment_timeline = [instruct_loop, training_trial_decreasing, survey, finish];
+        } else if (CONDITION === 2) {
+            experiment_timeline = [instruct_loop, training_trial_constant, survey, finish];
+        }
+    } else {
+        if (CONDITION === 0) {
+            experiment_timeline = [training_trial_increasing];
+        } else if (CONDITION === 1) {
+            experiment_timeline = [training_trial_decreasing];
+        } else if (CONDITION === 2) {
+            experiment_timeline = [training_trial_constant];
+        }
     }
+
+
     experiment_timeline = experiment_timeline.slice(JUMP_TO_BLOCK);
 
-    flatten_timeline = function(timeline){
+    flatten_timeline = function (timeline) {
         var global_timeline = [];
 
-        for(var i in timeline){
+        for (var i in timeline) {
             t = timeline[i];
 
-            if(t.timeline !== undefined){
+            if (t.timeline !== undefined) {
                 //recursive for sub timelines
-                global_timeline.push( flatten_timeline( t.timeline ));
+                global_timeline.push(flatten_timeline(t.timeline));
             } else {
                 // its a real block
-                if(t.type !== undefined){
+                if (t.type !== undefined) {
                     info = t.type;
 
                     //if(t.questions !== undefined){
-                        //info = info + ' : ' + t.questions.toString();
+                    //info = info + ' : ' + t.questions.toString();
                     //}
-                    global_timeline.push( info);
+                    global_timeline.push(info);
 
-                } else if (t.trial_id !== undefined){
-                    global_timeline.push( 'Mouselab : ' + t.trial_id)
+                } else if (t.trial_id !== undefined) {
+                    global_timeline.push('Mouselab : ' + t.trial_id)
                 }
 
             }
         }
         global_timeline = [global_timeline.flat(1)];
-        return(global_timeline);
+        return (global_timeline);
     }
-    psiturk.recordUnstructuredData('global_timeline', JSON.stringify(flatten_timeline(experiment_timeline)) );
+    psiturk.recordUnstructuredData('global_timeline', JSON.stringify(flatten_timeline(experiment_timeline)));
     //console.log( JSON.stringify(flatten_timeline(experiment_timeline)) );
 
     // ================================================ #
@@ -543,12 +558,12 @@ Please answer the following questions about the *Web of Cash* game.
     // ================================================ #
     calculateBonus = function () {
         var bonus;
-        console.log("Score", SCORE);
-        console.log("bonus rate", PARAMS.bonusRate);
+        //console.log("Score", SCORE);
+        //console.log("bonus rate", PARAMS.bonusRate);
         bonus = SCORE * PARAMS.bonusRate;
-        console.log("Bonus 1", bonus);
+        //console.log("Bonus 1", bonus);
         bonus = (Math.round(bonus * 100)) / 100; // round to nearest cent
-        console.log("Bonus 2", bonus);
+        //console.log("Bonus 2", bonus);
         return Math.max(0, bonus);
     };
     reprompt = null;
@@ -586,6 +601,7 @@ Press the button to resubmit.
         // show_progress_bar: true
         on_finish: function () {
             if (DEBUG) {
+                console.log('final_bonus', SCORE)
                 psiturk.recordUnstructuredData('final_bonus', calculateBonus());
                 return save_data();
                 //return jsPsych.data.displayData();

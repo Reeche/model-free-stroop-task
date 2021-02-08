@@ -483,7 +483,7 @@ jsPsych.plugins['mouselab-mdp'] = (function() {
             this.data.expectedScore += r;
           }
           this.data.rewards.push(r);
-          this.addScore(r);
+          this.addScore(r, true);
           this.spendEnergy(this.moveEnergy);
           return this.arrive(s1);
         }
@@ -656,7 +656,7 @@ jsPsych.plugins['mouselab-mdp'] = (function() {
     arrive(s, repeat = false) {
       var a, g, keys;
       g = this.states[s];
-      g.reveal(this.stateRewards[s]);
+      //g.reveal(this.stateRewards[s]);
       this.canvas.renderAll();
       this.freeze = false;
       LOG_DEBUG('arrive', s);
@@ -704,16 +704,21 @@ jsPsych.plugins['mouselab-mdp'] = (function() {
       }
     }
 
-    addScore(v) {
+    addScore(v, move) {
       var score;
       this.data.score += v;
       if (this.simulationMode) {
         score = this.data.score;
       } else {
         SCORE += v;
+        //console.log("current score and difference", SCORE, v)
         score = SCORE;
       }
-      return this.drawScore(score);
+      if (move === true) {
+        return NULL;
+      } else {
+        return this.drawScore(score);
+      }
     }
 
     resetScore() {
@@ -832,8 +837,12 @@ jsPsych.plugins['mouselab-mdp'] = (function() {
       if (this.blockOver) {
         return;
       }
-      this.lowerMessage.html("You made <span class=mouselab-score/> on this round.\n<br>\n<b>Press</b> <code>space</code> <b>to continue.</b>");
-      $('.mouselab-score').html('$' + this.data.score);
+      var temp_score = this.data.score + Object.keys(this.data.queries.click.state.target).length
+      //this.lowerMessage.html("You made <span class=mouselab-score/> on this round.\n<br>\n<b>Press</b> <code>space</code> <b>to continue.</b>");
+      this.lowerMessage.html("The sum of rewards minus the clicking costs on the chosen path was <span class=mouselab-score/>. " +
+          "\n<br>\nTherefore your scores has increase/decreased by <span class=mouselab-score/>." +
+          "\n<br>\n<b>Press</b> <code>space</code> <b>to continue.</b>");
+      $('.mouselab-score').html('$' + temp_score);
       $('.mouselab-score').css('color', redGreen(this.data.score));
       $('.mouselab-score').css('font-weight', 'bold');
       return this.keyListener = jsPsych.pluginAPI.getKeyboardResponse({
