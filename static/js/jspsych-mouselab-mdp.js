@@ -839,7 +839,7 @@ jsPsych.plugins['mouselab-mdp'] = (function() {
       }
       var temp_score = this.data.score + Object.keys(this.data.queries.click.state.target).length
       //this.lowerMessage.html("You made <span class=mouselab-score/> on this round.\n<br>\n<b>Press</b> <code>space</code> <b>to continue.</b>");
-      this.lowerMessage.html("The sum of rewards minus the clicking costs on the chosen path was <span class=mouselab-score/>. " +
+      this.lowerMessage.html("The sum of rewards on your chosen path was <span class=mouselab-score/>. " +
           "\n<br>\nTherefore your scores has increase/decreased by <span class=mouselab-score/>." +
           "\n<br>\n<b>Press</b> <code>space</code> <b>to continue.</b>");
       $('.mouselab-score').html('$' + temp_score);
