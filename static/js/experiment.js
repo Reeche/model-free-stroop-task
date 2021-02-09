@@ -331,7 +331,7 @@ Please briefly answer the questions below before you submit the HIT.`);
                     "\n\n<img class='display' style=\"width:50%; height:auto\" src='static/images/web-of-cash.png'/>\n\n"),
                 markdown("## Rewards and Costs\n- Each node of the web either contains a reward of up to <b><font color='green'>$48</font></b> or a loss of up to <b><font color='red'>$-48</font></b>" +
                     "\n- You can find out about a node's loss or reward by using the node inspector.\n- The fee for using the node inspector is <b>$1 per click</b>. " +
-                    "\n- After each round your reward will be calculated, which is the sum of the reward of each node that you have passed on your route." +
+                    "\n- After each round your total score will be calculated, which is the sum of the reward or loss of each node that you have passed on your route." +
                     "\n\n- You will start with **$50**"),
                 markdown("## Additional Information\n\n<img class='display' style=\"width:50%; height:auto\" src='static/images/web-of-cash.png'/>" +
                     "\n- There will be 35 rounds and on every round the rewards on the web will be different. " +
