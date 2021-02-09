@@ -308,12 +308,12 @@ Please briefly answer the questions below before you submit the HIT.`);
     //             return SCORE = 0;
     //         }
     //     });
-    //     divider = new TextBlock({
-    //         text: function () {
-    //             SCORE = 0;
-    //             return "<div style='text-align: center;'> Press <code>space</code> to continue.</div>";
-    //         }
-    //     });
+    divider = new TextBlock({
+        text: function () {
+            SCORE = 0;
+            return "<div style='text-align: center;'> Press <code>space</code> to continue to the trials.</div>";
+        }
+    });
 
     instructions = new Block({
         type: 'instructions',
@@ -510,11 +510,11 @@ Please answer the following questions about the *Web of Cash* game.
         }
     } else {
         if (CONDITION === 0) {
-            experiment_timeline = [instruct_loop, training_trial_increasing, survey, finish];
+            experiment_timeline = [instruct_loop, divider, training_trial_increasing, survey, finish];
         } else if (CONDITION === 1) {
-            experiment_timeline = [instruct_loop, training_trial_decreasing, survey, finish];
+            experiment_timeline = [instruct_loop, divider, training_trial_decreasing, survey, finish];
         } else if (CONDITION === 2) {
-            experiment_timeline = [instruct_loop, training_trial_constant, survey, finish];
+            experiment_timeline = [instruct_loop, divider, training_trial_constant, survey, finish];
         }
     }
 
