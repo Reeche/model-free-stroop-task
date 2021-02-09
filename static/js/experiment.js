@@ -501,7 +501,7 @@ Please answer the following questions about the *Web of Cash* game.
 
     // here you set which experiments snippets will be run
     console.log("SELECTED CONDITION", CONDITION)
-    if (debug = false) {
+    if (debug === false) {
         if (CONDITION === 0) {
             experiment_timeline = [instruct_loop, training_trial_increasing, survey, finish];
         } else if (CONDITION === 1) {
