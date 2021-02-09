@@ -6,7 +6,7 @@ var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_I
     getTrainingTrialsConstant, getTrialsWithInnerRevealed,
     initializeExperiment, loadTimeout, psiturk, saveData, slowLoad;
 
-DEBUG = false; // change this to false before running the experiment
+DEBUG = true; // change this to false before running the experiment
 
 CONDITION = parseInt(condition);
 //CONDITION = 0; // 0 or 1
@@ -293,7 +293,6 @@ Thanks for participating.
 \n We hope you had fun! Based on your
 performance, you will be awarded a bonus of
 **$${calculateBonus().toFixed(2)}** on top of your base pay of $1.50. 
-\n Secret completion code: RNGV6VGF
 \n
 Please briefly answer the questions below before you submit the HIT.`);
         },
