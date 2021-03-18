@@ -8,3 +8,6 @@ A checklist before deployment / going live with the experiment:
 ** in experiment.js
 * Check Debug mode
 * Check the number for basepay
+
+** in complete.html
+* Change secret code

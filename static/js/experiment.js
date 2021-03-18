@@ -387,7 +387,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsIncreasing(3);
+            return getTrainingTrialsIncreasing(50);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -405,7 +405,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsDecreasing(3);
+            return getTrainingTrialsDecreasing(50);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
@@ -423,7 +423,7 @@ Please answer the following questions about the *Web of Cash* game.
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
         stateClickCost: 1, // subtracted from score every time a state is clicked
         timeline: (function () {
-            return getTrainingTrialsConstant(3);
+            return getTrainingTrialsConstant(50);
         })(),
         startScore: 50,
         //centerMessage: 'Demo trial',
