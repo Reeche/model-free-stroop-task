@@ -333,7 +333,7 @@ Please briefly answer the questions below before you submit the HIT.`);
                     "\n- After each round your total score will be calculated, which is the sum of the reward or loss of each node that you have passed on your route, and added to your current score" +
                     "\n\n- You will start with **$50**"),
                 markdown("## Additional Information\n\n<img class='display' style=\"width:50%; height:auto\" src='static/images/web-of-cash.png'/>" +
-                    "\n- There will be 35 rounds and on every round the rewards on the web will be different. " +
+                    "\n- There will be 50 rounds and on every round the rewards on the web will be different. " +
                     "So you have to make a new plan every time.\n"),
                 markdown(`## Practice makes perfect\n\n- You can get better at planning through practice.
             \n- You will receive a base pay of $2.00 and the better you perform, the higher your bonus will be.
