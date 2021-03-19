@@ -292,7 +292,7 @@ Move with the arrow keys.</b>`;
 Thanks for participating. 
 \n We hope you had fun! Based on your
 performance, you will be awarded a bonus of
-**$${calculateBonus().toFixed(2)}** on top of your base pay of $1.50. 
+**$${calculateBonus().toFixed(2)}** on top of your base pay of $2.00. 
 \n
 Please briefly answer the questions below before you submit the HIT.`);
         },
@@ -336,7 +336,7 @@ Please briefly answer the questions below before you submit the HIT.`);
                     "\n- There will be 35 rounds and on every round the rewards on the web will be different. " +
                     "So you have to make a new plan every time.\n"),
                 markdown(`## Practice makes perfect\n\n- You can get better at planning through practice.
-            \n- You will receive a base pay of $1.50 and the better you perform, the higher your bonus will be.
+            \n- You will receive a base pay of $2.00 and the better you perform, the higher your bonus will be.
             \n`), markdown("## Quiz\n\nBefore you can begin playing *Web of Cash*, you must pass a quiz to show\nthat you understand the rules. If you get any of the questions" +
                     "\nincorrect, you will be brought back to the instructions to review and\ntry the quiz again.")];
         }
