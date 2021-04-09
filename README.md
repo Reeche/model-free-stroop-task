@@ -1,40 +1,52 @@
-# Psirokuturk
+# Mouselab MDP
 
-A starter pack for running online experiments with Psiturk on Heroku.
+## Publishing your code
+
+1. Go through the directory to make sure there is no private data which accidentally snuck in
+2. Remove the config.txt (uncomment out .gitignore line) or remove the lines in the config.txt which are secret
+
+#TODO please add to this checklist!
 
 ## Requirements
 
-Sadly, PsiTurk requires Python 2.7. If you don't have `pip2`, try using `pip`.
+The Coffeescript files in src should be able to compile into javascript using `make`. In order to download the most recent version of Coffeescript which has more support for async, download Coffeescript from the npm package manager:
 
-    pip2 install git+https://github.com/NYUCCL/psiTurk psycopg2-binary
+- https://www.npmjs.com/get-npm
+- https://www.npmjs.com/package/coffeescript
 
-Note that requirements.txt is for the heroku app, not for your local environment.
+You can use any Javascript plugins that work with jsPsych v6.3.0. Look at the plugins in static/js/jsPsych and the jsPsych documentation if you want to create your own.
+
+To get started with running the flask app, create a psiturk virtual environment or conda environment and install psiturk:
+
+```
+pip install psiturk
+```
+
+## Origins
+
+Fred's Web of Cash plugin: https://github.com/fredcallaway/Mouselab-MDP
+RLDM paper: https://osf.io/7wcya/
 
 ## Setup
 
-1. Clone this repository
-2. Create a Heroku account and install the [Heroku toolbelt](https://toolbelt.heroku.com/)
-3. Create a new app and add a Postgres database
+ Go through these two atlas pages:
+   - https://atlas.is.localnet/confluence/display/REG/How+to+run+a+psiTurk+experiment
+   - https://atlas.is.localnet/confluence/pages/viewpage.action?pageId=83136263
+  
+In short. you will need to:
+
+1. Create a Heroku app, and attache the mouselab mdp database
 ```
-    heroku create YOUR_APP_NAME --buildpack heroku/python
+    heroku create YOUR_APP_NAME --buildpack heroku/python --region eu
     heroku git:remote -a YOUR_APP_NAME
-    heroku addons:create heroku-postgresql
-```
-4. Write config variables
-```
-    bin/set_config.py
-```
-You will now have a config.txt file in this directory. 
+    heroku addons:attach mouselabmdp-database::DATABASE --app <your-app-name>
 
-5. Push to heroku
-```
-    git commit -am 'my first commit'
-    git push heroku master
 ```
 
-## Usage
+2. Follow the steps from step 6 in the psiturk + heroku documentation: https://psiturk.readthedocs.io/en/python2/heroku.html)
 
-### Post HITs
+
+### Post HITs (if not using CloudResearch)
 
 Start the psiturk shell with the command `psiturk`. Run `hit create 30 1.50 0.5` to create 30 hits, each of which pays $1.50 and has a 30 minute time limit. You'll get a warning about your server not running. You are using an external server process, so you can press `y` to bypass the error message.
 
