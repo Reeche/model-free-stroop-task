@@ -154,38 +154,45 @@ initializeExperiment = function () {
         show_clickable_nav: true,
         pages: function () {
             return [
+
                 `<h1> Instructions </h1>
+<div style="text-align: left">
+<li>In this HIT, you will play ${NUM_TRIALS} rounds of the <em>Web of Cash</em> game.</li>
+<li>First you will be given the instructions and answer some questions to check your understanding of the game.</li>
+<li>The whole HIT will take about 15 minutes.</li>
+<li>The better you perform, the higher your bonus will be.</li>
 
-In this HIT, you will play ${NUM_TRIALS} rounds of the <em>Web of Cash</em> game.  \n
-First you will be given the instructions and answer some questions to check your understanding of the game. The whole HIT will take about 15 minutes. \n
-The better you perform, the higher your bonus will be.
+</div>
+
 `,
-                ` <h1>Web of Cash</h1>
-In this HIT, you will play a game called <em>Web of Cash</em>. 
-You will guide a money-loving spider through a spider web. \n
-Each gray circle (called a <strong><em>node</strong></em>) has its own value. At the end of each trial, 
-the value of the nodes will be summed up and added to your score. \n\n
+                `<h1> Web of Cash </h1>
+<div style="text-align: left">
+<li>In this HIT, you will play a game called <em>Web of Cash</em></li>
+<li>You will guide a money-loving spider through a spider web.</li>
+<li>Each gray circle (called a <strong><em>node</strong></em>) has its own value.</li>
+<li>At the end of each trial, the value of the nodes will be summed up and added to your score.</li>
+<li>You will be able to move the spider with the arrow keys, but only in the direction of the arrows between the nodes.</li>
+<li>The image below shows the shape of all the webs that you will be navigating in when the game starts.</li>
+<img class='display' style="width:50%; height:auto" src='/static/images/web-of-cash.png'/>
+</div>
 
- You will be able to move the spider with the arrow keys, but only in the direction
- of the arrows between the nodes. The image below shows the shape of all the webs that you will be navigating in when the game starts.
-
-<img class='display' style="width:50%; height:auto" src='static/images/web-of-cash-unrevealed.png'/>
 `,
                 `<h1> <em>Web of Cash</em> Node Inspector </h1>
 
-It's hard to make good decision when you can't see what you will get!
-Fortunately, in the <em>Web of Cash</em> game you will have access to a 
-<strong><em>node inspector</strong></em> which can reveal the value of a node. \n
-To use the node inspector, simply <strong><em>click on a node</strong></em>. \n
-The image below illustrates how this works.
+<div style="text-align: left">
+<li>It's hard to make good decision when you can't see what you will get!</li>
+<li>Fortunately, in the <em>Web of Cash</em> game you will have access to a <strong><em>node inspector</strong></em> which can reveal the value of a node.</li>
+<li>To use the node inspector, simply <strong><em>click on a node</strong></em>.</li>
+<li>The image below illustrates how this works.</li>
+
 <br>
-<strong>Note:</strong> you can only use the node inspector when you're on the starting
-node.
+<li><strong>Note:</strong> you can only use the node inspector when you're on the starting
+node.</li>
 
-<img class='display' style="width:50%; height:auto" src='static/images/web-of-cash.png'/>
-
+<img class='display' style="width:50%; height:auto" src='static/images/cond_${CONDITION}_example.png'/>
+</div>
 `,
-                `<h1> Rewards and Costs (2/2) </h1>
+                `<h1> Rewards and Costs </h1>
 <div style="text-align: left">
 <li>Each node of the web either contains a reward of up to <strong><font color='green'>$48</font></strong> or a loss of up to <strong><font color='red'>$-48</font></strong></li>
 <li>You can find out about a node's loss or reward by using the node inspector, which costs <strong>$1 per click.</strong></li>
@@ -198,11 +205,10 @@ node.
 
                 `<h1> Additional Information </h1>
 
-<img class='display' style="width:50%; height:auto" src='static/images/web-of-cash.png'/>
 <div style="text-align: left">
 <li>There will be ${NUM_TRIALS} trials and on every round the rewards behind each node will be different. So you have to make a new plan every time</li>
 <li>Practice makes perfect! You can get better at planning through practice.</li>
-<li>You will receive a base pay of $2.00 </li>
+<li>You will receive a base pay of $1.50 </li>
 <li>The more money the spider gets, the bigger your bonus will be!</li>
 </div>`,
                 `<h1> Quiz </h1>
@@ -269,7 +275,7 @@ If you get any of the questions incorrect, you will be brought back to the instr
             for (resp_id in responses) {
                 response = responses[resp_id];
                 if (!(data.last(1).values()[0].correct[resp_id] === response)) {
-                    alert(`You got at least one question wrong. We'll send you back to the instructions and then you can try again. Number of attempts left: ${MAX_REPETITIONS - REPETITIONS}.`);
+                    alert(`You got at least one question wrong. We'll send you back to the instructions and then you can try again.`);
                     return true; // try again
                 }
             }
@@ -280,34 +286,34 @@ If you get any of the questions incorrect, you will be brought back to the instr
 
     let demographics = {
         type: 'survey-html-form',
-        preamble: "<h1>Demographics</h1> <br> Please answer the following questions.",
-        html: `<p>
-  What is your gender?<br>
+        preamble: "<h1>Demographics</h1> <br> Thanks for participating. We hope you had fun! Please answer the following questions.",
+        html: `<div style="text-align: left"> <p>
+  <strong>What is your gender?</strong><br>
   <input required type="radio" name="gender" value="male"> Male<br>
   <input required type="radio" name="gender" value="female"> Female<br>
   <input required type="radio" name="gender" value="other"> Other<br>
 </p>
 <br>
 <p>
-  How old are you?<br>
+  <strong>How old are you?</strong><br>
   <input required type="number" name="age">
 </p>
 <br>
 <p>
-  Are you colorblind?<br>
-  <input required type="radio" name="colorblind" value="0">No<br>
-  <input required type="radio" name="colorblind" value="1">Yes<br>
-  <input required type="radio" name="colorblind" value="2">Don't know<br>
+  <strong>Are you colorblind?</strong><br>
+  <input required type="radio" name="colorblind" value="0"> No<br>
+  <input required type="radio" name="colorblind" value="1"> Yes<br>
+  <input required type="radio" name="colorblind" value="2"> Don't know<br>
 </p>
 <br>
 <p>
-  Since we are doing science, we would now like to know how much attention/effort you put into the game and any surveys. <br><em>(Please note that, even if you answer \'No effort\', it will not affect your pay in anyway and we will not exclude you from future studies based on this response. It will just enable us to do our data analysis better. <strong> We value your time! </strong>)</em><br>
-  <input required type="radio" name="effort" value="0">A lot of effort (e.g. paying full attention throughout, trying to get a high score in the <em> Web of Cash </em>)<br>
-  <input required type="radio" name="effort" value="1">Some effort (e.g. mostly paying attention, listening to music or a podcast)<br>
-  <input required type="radio" name="effort" value="2">Minimal effort (e.g. watching TV and not always looking at the screen, just trying to get through the <em> Web of Cash </em> trials)<br>
-  <input required type="radio" name="effort" value="3">No effort (e.g. randomly clicking)<br>
-  <input required type="radio" name="effort" value="4">Unsure<br>
-</p>`
+  <strong>Since we are doing science, we would now like to know how much attention/effort you put into the game and any surveys. <br><em>(Please note that, even if you answer \'No effort\', it will not affect your pay in anyway and we will not exclude you from future studies based on this response. It will just enable us to do our data analysis better. <strong> We value your time! </strong>)</em><br></strong>
+  <input required type="radio" name="effort" value="0"> A lot of effort (e.g. paying full attention throughout, trying to get a high score in the <em> Web of Cash </em>)<br>
+  <input required type="radio" name="effort" value="1"> Some effort (e.g. mostly paying attention, listening to music or a podcast)<br>
+  <input required type="radio" name="effort" value="2"> Minimal effort (e.g. watching TV and not always looking at the screen, just trying to get through the <em> Web of Cash </em> trials)<br>
+  <input required type="radio" name="effort" value="3"> No effort (e.g. randomly clicking)<br>
+  <input required type="radio" name="effort" value="4"> Unsure<br>
+</p><\div>`
     };
     let training_trial_increasing = {
         type: 'mouselab-mdp',
@@ -401,30 +407,31 @@ Move with the arrow keys.`,
         preamble: function () {
             return `<h1> You've completed the HIT </h1>
 
-Thanks for participating. We hope you had fun! Based on your
-performance, you will be awarded a bonus of
-<strong>$${BONUS}</strong>.
+Based on your performance, you will be awarded a total bonus of <strong>$${calculateBonus().toFixed(2)}</strong>.
 
 Please briefly answer the questions below before you submit the HIT.`;
+        },
+        on_finish: function() {
+            return BONUS = calculateBonus().toFixed(2);
         },
         questions: [
             {
                 prompt: 'Was anything confusing or hard to understand?',
                 required: false,
-                rows: 10
+                rows: 3
             },
             {
                 prompt: "What have you learned? What are you doing differently now from what you were doing at the beginning of this HIT?",
                 required: true,
-                rows: 5
+                rows: 3
             },
             {
                 prompt: 'Additional comments?',
                 required: false,
-                rows: 10
+                rows: 3
             }
         ],
-        button_label: 'Continue on to secret code'
+        button_label: 'Submit and continue to the secret code'
     };
     let secret_code_trial = {
         type: 'html-button-response',
@@ -436,11 +443,11 @@ Please briefly answer the questions below before you submit the HIT.`;
 
 
     if (CONDITION === 0) {
-        experiment_timeline = [instruct_loop, training_trial_increasing, finish];
+        experiment_timeline = [instruct_loop, training_trial_increasing, demographics, finish];
     } else if (CONDITION === 1) {
-        experiment_timeline = [instruct_loop, training_trial_decreasing, finish];
+        experiment_timeline = [instruct_loop, training_trial_decreasing, demographics, finish];
     } else if (CONDITION === 2) {
-        experiment_timeline = [instruct_loop, training_trial_constant, finish];
+        experiment_timeline = [instruct_loop, training_trial_constant, demographics, finish];
     }
 
 
@@ -449,21 +456,21 @@ Please briefly answer the questions below before you submit the HIT.`;
 // ================================================ #
 
 // experiment goes to full screen at start
-    experiment_timeline.unshift({
-        type: "fullscreen",
-        message: '<p>The experiment will switch to full screen mode when you press the button below.<br> Please do not leave full screen for the duration of the experiment. </p>',
-        button_label: 'Continue',
-        fullscreen_mode: true,
-        delay_after: 1000
-    });
+//     experiment_timeline.unshift({
+//         type: "fullscreen",
+//         message: '<p>The experiment will switch to full screen mode when you press the button below.<br> Please do not leave full screen for the duration of the experiment. </p>',
+//         button_label: 'Continue',
+//         fullscreen_mode: true,
+//         delay_after: 1000
+//     });
 // at end, show the secret code and then leave fullscreen
 
     experiment_timeline.push(secret_code_trial);
-    experiment_timeline.push({
-        type: "fullscreen",
-        fullscreen_mode: false,
-        delay_after: 1000
-    });
+    // experiment_timeline.push({
+    //     type: "fullscreen",
+    //     fullscreen_mode: false,
+    //     delay_after: 1000
+    // });
 // bonus is the (roughly) total score multiplied by something, bounded by min and max amount
     calculateBonus = function () {
         var bonus;

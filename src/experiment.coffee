@@ -89,8 +89,8 @@ $(window).on 'load', ->
 
   psiturk.preloadImages [
     'static/images/spider.png'
-    'static/images/web-of-cash-unrevealed.png'
     'static/images/web-of-cash.png'
+    'static/images/cond_2_example.png'
     'static/images/sticky_nodes.png'
   ]
 
