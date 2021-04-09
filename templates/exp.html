@@ -12,33 +12,31 @@
         <title>Psychology Experiment</title>
         <meta charset="utf-8">
         <link rel="Favicon" href="static/favicon.ico" />
-        <!-- <script src="static/lib/webppl.min.js" type="text/javascript"></script> -->
 
-        <script src="static/lib/jquery-min.js" type="text/javascript"> </script>
-        <script src="static/lib/underscore.js" type="text/javascript"> </script>
-        <script src="static/lib/backbone-min.js" type="text/javascript"> </script>
-        <script src="static/lib/d3.v3.min.js" type="text/javascript"> </script>
+        <!-- libraries used in your experiment,
+             psiturk specifically depends on underscore.js, backbone.js and jquery
+                                                                                -->
+        <script src="/static/lib/jquery-3.4.1.min.js" type="text/javascript"> </script>
+		<script src="/static/lib/underscore-min.js" type="text/javascript"> </script>
+		<script src="/static/lib/backbone-min.js" type="text/javascript"> </script>
+		<script src="/static/lib/d3.v3.min.js" type="text/javascript"> </script>
+
         <script src="static/lib/showdown-min.js" type="text/javascript"></script>
-        <script src="static/lib/fabric.min.js"></script>
-        <script src="static/lib/ifvisible.js"></script>
+        <script src="static/lib/fabric.min.js" type="text/javascript"></script>
+        <script src="static/lib/ifvisible.js" type="text/javascript"></script>
 
 
         <script src="static/js/utils.js" type="text/javascript"> </script>
         <script src="static/js/jsPsych/jspsych.js" type="text/javascript"></script>
-        <script src="static/js/jsPsych/plugins/jspsych-text.js" type="text/javascript"></script>
-        <script src="static/js/jsPsych/plugins/jspsych-survey-text.js" type="text/javascript"></script>
-        <script src="static/js/jsPsych/plugins/jspsych-html.js" type="text/javascript"></script>
-        <script src="static/js/jsPsych/plugins/jspsych-instructions.js" type="text/javascript"></script>
         <script src="static/js/jsPsych/plugins/jspsych-survey-multi-choice.js" type="text/javascript"></script>
-        <script src="static/js/jsPsych/plugins/jspsych-button-response.js" type="text/javascript"></script>
+        <script src="static/js/jsPsych/plugins/jspsych-survey-text.js" type="text/javascript"></script>
+        <script src="static/js/jsPsych/plugins/jspsych-instructions.js" type="text/javascript"></script>
+        <script src="static/js/jsPsych/plugins/jspsych-survey-html-form.js" type="text/javascript"></script>
+        <script src="static/js/jsPsych/plugins/jspsych-html-button-response.js" type="text/javascript"></script>
+        <script src="static/js/jsPsych/plugins/jspsych-html-keyboard-response.js" type="text/javascript"></script>
         <script src="static/js/jsPsych/plugins/jspsych-call-function.js" type="text/javascript"></script>
-        <script src="static/js/jsPsych/plugins/jspsych-form.js" type="text/javascript"></script>
+        <script src="static/js/jsPsych/plugins/jspsych-fullscreen.js" type="text/javascript"></script>
         <script src="static/js/jspsych-mouselab-mdp.js" type="text/javascript"></script>
-        
-        <!-- <script src="static/js/webppl.js" type="text/javascript"></script> -->
-        <!-- <script src="static/js/jspsych-webppl.js" type="text/javascript"></script> -->
-        
-        
 
 
         <script type="text/javascript">
@@ -49,8 +47,11 @@
             var adServerLoc = "{{ adServerLoc }}"; // the location of your ad (so you can send user back at end of experiment)
             var mode = "{{ mode }}";
         </script>
-        <script src="static/js/psiturk.js" type="text/javascript"> </script>
-                
+
+        <!-- utils.js and psiturk.js provide the basic psiturk functionality -->
+		<script src="/static/js/utils.js" type="text/javascript"> </script>
+		<script src="/static/js/psiturk.js" type="text/javascript"> </script>
+
         <link rel=stylesheet href="static/css/bootstrap.min.css" type="text/css">
         <link rel=stylesheet href="static/css/style.css" type="text/css">
         <link rel="stylesheet" href="static/js/jsPsych/css/jspsych.css" type="text/css"></link>
@@ -76,19 +77,16 @@
         <div id='timer'></div>
         <div id='jspsych-target' class='jspsych-display-element'>
             <!-- Initial welcome message -->
-            <h1>Loading</h1>
-<!--            <p>
+            <h1>Welcome</h1>
+            <p>
             Thanks for accepting our HIT and participating in our experiment!
             In this experiment, you will play a decision-making game.
-            </p>
-            <p>
-            You will have the opportunity to earn a bonus of up to $5.00 in
-            addition to the base payment of $1.50. A typical bonus is $1.50 The
-            experiment will take roughly 15 minutes to complete.
-            </p>
+                
+            You will receive a bonus based on how well you play, up to a maximum bonus of
+            $5.00!
 
-            Click the button below to start the experiment.-->
-
+            Click the button below to start the experiment.
+            </p>
             <p>
                 It can take up to a 60 seconds for this HIT to load. So please be patient.
             </p>
@@ -118,7 +116,7 @@
                 <strong>Error!</strong>
                 We couldn't contact the database. Try reloading the page. If the
                 problem persists, please return the HIT and report the error to
-                cocosci.turk@gmail.com.
+                re-mturk@tuebingen.mpg.de.
             </div>
         </div>
 
