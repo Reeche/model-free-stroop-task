@@ -1,5 +1,5 @@
 var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_INNER_REVEALED, TRIALS_TRAINING,
-    TRIALS_ACTION, NUM_TRIALS, calculateBonus, createStartButton, delay, getActionTrials, getTrainingTrials,
+    TRIALS_ACTION, NUM_TRIALS, RANGE_UP, RANGE_LOW, calculateBonus, createStartButton, delay, getActionTrials, getTrainingTrials,
     initializeExperiment, loadTimeout, psiturk, saveData, slowLoad;
 
 DEBUG = true; // change this to false before running the experiment
@@ -44,6 +44,14 @@ PARAMS = {
     CODE: ['BRMCHEN'],
     startTime: Date(Date.now())
 };
+
+if (CONDITION === 2){
+    RANGE_UP = 10;
+    RANGE_LOW = -10
+} else {
+    RANGE_UP = 48;
+    RANGE_LOW = -48
+}
 
 
 saveData = function () {
@@ -160,7 +168,7 @@ initializeExperiment = function () {
 <li>In this HIT, you will play ${NUM_TRIALS} rounds of the <em>Web of Cash</em> game.</li>
 <li>First you will be given the instructions and answer some questions to check your understanding of the game.</li>
 <li>The whole HIT will take about 15 minutes.</li>
-<li>The better you perform, the higher your bonus will be.</li>
+<li>The better you perform, the higher your bonus will be (up to $5.00!).</li>
 
 </div>
 
@@ -194,7 +202,8 @@ node.</li>
 `,
                 `<h1> Rewards and Costs </h1>
 <div style="text-align: left">
-<li>Each node of the web either contains a reward of up to <strong><font color='green'>$48</font></strong> or a loss of up to <strong><font color='red'>$-48</font></strong></li>
+<!--<li>Each node of the web either contains a reward of up to <strong><font color='green'>$48</font></strong> or a loss of up to <strong><font color='red'>$-48</font></strong></li>-->
+<li>Each node of the web either contains a reward of up to <strong><font color='green'>$${RANGE_UP}</font></strong> or a loss of up to <strong><font color='red'>$${RANGE_LOW}</font></strong></li>
 <li>You can find out about a node's loss or reward by using the node inspector, which costs <strong>$1 per click.</strong></li>
 <li>After each round your total score will be calculated, which is the sum of the reward or loss of each node that you have passed on your route, and added to your current score.</li>
 <li>You will start with a score of $50.</li>
@@ -260,7 +269,12 @@ If you get any of the questions incorrect, you will be brought back to the instr
         ],
         data: {
             correct: {
-                Q0: '$-48 to $48',
+                Q0: function() {
+                    if (CONDITION===2) {
+                        return '$-10 to $10'
+                    } else {
+                        return '$-48 to $48'
+                    }},
                 Q1: '$1',
                 Q2: 'The better I perform the higher my bonus will be.',
                 Q3: 'No, the amount of cash at each node of the web may be different each time.',

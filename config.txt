@@ -1,13 +1,14 @@
 [HIT Configuration]
-title = Example JsPsych Psiturk Experiment
-description = For educational purposes
+title = Web of Cash
+description = Earn money by navigating through a spider web in this psychology experiment
 amt_keywords = psychology, experiment
 lifetime = 24
-us_only = false
+us_only = true
 # set a reasonable approve_requirement (e.g. 95), 0 is for testing purposes only
 approve_requirement = 0
 contact_email_on_error = re-mturk@tuebingen.mpg.de
-ad_group = psychology
+ad_group = Default psiTurk
+psiturk_keywords = web-of-cash
 organization_name = Max Planck Institute
 browser_exclude_rule = MSIE, mobile, tablet
 allow_repeats = false
@@ -16,22 +17,31 @@ allow_repeats = false
 database_url = sqlite:///participants.db
 table_name = participants
 
+# test postgres
+#database_url = postgres://ajlxfqvgiueglq:1fae48960483472204090a0ea4911533361ebee127f1d1d32c7f30a788f01a2e@ec2-54-220-229-215.eu-west-1.compute.amazonaws.com:5432/d5lcbukdaspu3q
+#table_name = participants
+# heroku pg:promote HEROKU_POSTGRESQL_SILVER_URL
+
+# mouselab postgres
+#database_url = postgres://yfocikxnxzrsyx:a2650e7f24258f8fcb3cd0f7cf329a4f2b238b254f4fc0252aa65fa8f1125f30@ec2-54-247-107-109.eu-west-1.compute.amazonaws.com:5432/ddfku1b5k7j56b
+#table_name = participants
+# heroku pg:promote HEROKU_POSTGRESQL_COPPER_URL
+
 [Server Parameters]
 host = 0.0.0.0
 port = 22361
 cutoff_time = 60
 logfile = server.log
 loglevel = 2
-debug = true
-login_username =
-login_pw =
+login_username = user
+login_pw = pw
 threads = 1
 secret_key = 'this is my secret key which is hard to guess, i should change this'
-# adserver_revproxy_host = mouselab-mdp-example.herokuapp.com
+
 
 [Task Parameters]
-experiment_code_version = <your unique experiment version>
-num_conds = 1
+experiment_code_version = threecond_v3
+num_conds = 3
 num_counters = 1
 
 [Shell Parameters]
@@ -40,7 +50,7 @@ bonus_message = "Thanks for participating!"
 
 # If you are not using the psiturk ad server, set `use_psiturk_ad_server` to `false` and point `ad_location` to your proxy server <host> and <port>. Format the ad_location like this:
 #
-#   https://<host>:<port>/ad 
+#   https://<host>:<port>/ad
 
+ad_location = https://threecond-eu.herokuapp.com/pub
 use_psiturk_ad_server = false
-ad_location = <your domain>
