@@ -20,7 +20,7 @@ TRIALS_INNER_REVEALED = void 0;
 
 STRUCTURE_TRAINING = void 0;
 
-SCORE = 0;
+SCORE = 50;
 
 BONUS = 0;
 
@@ -168,7 +168,7 @@ initializeExperiment = function () {
                 `<h1> Web of Cash </h1>
 <div style="text-align: left">
 <li>In this HIT, you will play a game called <em>Web of Cash</em></li>
-<li>You will guide a money-loving spider through a spider web.</li>
+<li>You will guide a money-loving spider through a spider web with the goal to maximise your score.</li>
 <li>Each gray circle (called a <strong><em>node</strong></em>) has its own value.</li>
 <li>At the end of each trial, the value of the nodes will be summed up and added to your score.</li>
 <li>You will be able to move the spider with the arrow keys, but only in the direction of the arrows between the nodes.</li>
@@ -196,8 +196,8 @@ node.</li>
 <div style="text-align: left">
 <li>Each node of the web either contains a reward of up to <strong><font color='green'>$48</font></strong> or a loss of up to <strong><font color='red'>$-48</font></strong></li>
 <li>You can find out about a node's loss or reward by using the node inspector, which costs <strong>$1 per click.</strong></li>
-<li>After each round your total score will be calculated, which is the sum of the reward or loss of each node that you have passed on your route, and added to your current score</li>
-<li>You will start with $50</li>
+<li>After each round your total score will be calculated, which is the sum of the reward or loss of each node that you have passed on your route, and added to your current score.</li>
+<li>You will start with a score of $50.</li>
 
 </div>
 
@@ -208,8 +208,8 @@ node.</li>
 <div style="text-align: left">
 <li>There will be ${NUM_TRIALS} trials and on every round the rewards behind each node will be different. So you have to make a new plan every time</li>
 <li>Practice makes perfect! You can get better at planning through practice.</li>
-<li>You will receive a base pay of $1.50 </li>
-<li>The more money the spider gets, the bigger your bonus will be!</li>
+<li>You will receive a base pay of $1.50 regardless of your performance.</li>
+<li>Your bonus depends on your performance. The more money the spider gets, the bigger your bonus will be!</li>
 </div>`,
                 `<h1> Quiz </h1>
 
@@ -325,7 +325,7 @@ If you get any of the questions incorrect, you will be brought back to the instr
         timeline: (function () {
             return getTrainingTrialsIncreasing(NUM_TRIALS);
         })(),
-        startScore: 50,
+        // startScore: 50,
         //centerMessage: 'Demo trial',
         playerImageScale: 0.3,
         size: 120, // determines the size of states, text, etc...
@@ -354,7 +354,7 @@ Move with the arrow keys.`,
         timeline: (function () {
             return getTrainingTrialsDecreasing(NUM_TRIALS);
         })(),
-        startScore: 50,
+        // startScore: 50,
         //centerMessage: 'Demo trial',
         playerImageScale: 0.3,
         size: 120, // determines the size of states, text, etc...
@@ -383,7 +383,7 @@ Move with the arrow keys.`,
         timeline: (function () {
             return getTrainingTrialsConstant(NUM_TRIALS);
         })(),
-        startScore: 50,
+        // startScore: 50,
         //centerMessage: 'Demo trial',
         playerImageScale: 0.3,
         size: 120, // determines the size of states, text, etc...
