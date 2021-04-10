@@ -14,12 +14,12 @@ browser_exclude_rule = MSIE, mobile, tablet
 allow_repeats = false
 
 [Database Parameters]
-database_url = sqlite:///participants.db
-table_name = participants
+#database_url = sqlite:///participants.db
+#table_name = participants
 
 # test postgres
-#database_url = postgres://ajlxfqvgiueglq:1fae48960483472204090a0ea4911533361ebee127f1d1d32c7f30a788f01a2e@ec2-54-220-229-215.eu-west-1.compute.amazonaws.com:5432/d5lcbukdaspu3q
-#table_name = participants
+database_url = postgres://ajlxfqvgiueglq:1fae48960483472204090a0ea4911533361ebee127f1d1d32c7f30a788f01a2e@ec2-54-220-229-215.eu-west-1.compute.amazonaws.com:5432/d5lcbukdaspu3q
+table_name = participants
 # heroku pg:promote HEROKU_POSTGRESQL_SILVER_URL
 
 # mouselab postgres
@@ -52,5 +52,5 @@ bonus_message = "Thanks for participating!"
 #
 #   https://<host>:<port>/ad
 
-ad_location = https://threecond-eu.herokuapp.com
+ad_location = https://threecond-eu.herokuapp.com/ad
 use_psiturk_ad_server = false
