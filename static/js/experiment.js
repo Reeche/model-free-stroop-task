@@ -2,7 +2,7 @@ var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_I
     TRIALS_ACTION, NUM_TRIALS, RANGE_UP, RANGE_LOW, calculateBonus, createStartButton, delay, getActionTrials, getTrainingTrials,
     initializeExperiment, loadTimeout, psiturk, saveData, slowLoad;
 
-DEBUG = true; // change this to false before running the experiment
+DEBUG = false; // change this to false before running the experiment
 
 if (DEBUG) {
     CONDITION = parseInt(window.prompt('condition 0-2', 0));
@@ -98,7 +98,7 @@ $(window).on('load', function () {
     loadTimeout = delay(12000, slowLoad);
     psiturk.preloadImages(['static/images/spider.png']);
     return delay(300, function () {
-        console.log('Loading data');
+        console.log("SELECTED CONDITION", CONDITION);
         STRUCTURE_TRAINING = loadJson('static/json/structure/312.json');
         TRIALS_TRAINING_INCREASING = loadJson('static/json/rewards/train_trials_increasing.json');
         TRIALS_TRAINING_DECREASING = loadJson('static/json/rewards/train_trials_decreasing.json');
