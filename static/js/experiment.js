@@ -26,7 +26,7 @@ BONUS = 0;
 
 MAX_AMOUNT = 5;
 
-NUM_TRIALS = 30
+NUM_TRIALS = 35
 
 calculateBonus = void 0;
 
