@@ -41,7 +41,7 @@ psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
 PARAMS = {
     inspectCost: 1,
     bonusRate: 0.002,
-    CODE: ['BRMCHEN'],
+    CODE: ['HLYBRMCHEN'],
     startTime: Date(Date.now())
 };
 
