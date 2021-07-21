@@ -2,13 +2,15 @@ var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_I
     TRIALS_ACTION, NUM_TRIALS, RANGE_UP, RANGE_LOW, calculateBonus, createStartButton, delay, getActionTrials, getTrainingTrials,
     initializeExperiment, loadTimeout, psiturk, saveData, slowLoad;
 
-DEBUG = false; // change this to false before running the experiment
+DEBUG = true; // change this to false before running the experiment
 
 if (DEBUG) {
     CONDITION = parseInt(window.prompt('condition 0-2', 0));
+    NUM_TRIALS = 5;
     //JUMP_TO_BLOCK = window.prompt('skip to block number?', 0);
 } else {
     CONDITION = parseInt(condition);
+    NUM_TRIALS = 35;
 }
 
 
@@ -26,8 +28,6 @@ BONUS = 0;
 
 MAX_AMOUNT = 5;
 
-NUM_TRIALS = 35
-
 calculateBonus = void 0;
 
 getTrainingTrials = void 0;
@@ -41,16 +41,19 @@ psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
 PARAMS = {
     inspectCost: 1,
     bonusRate: 0.002,
-    CODE: ['HLYBRMCHEN'],
+    CODE: ['MEERKAT'],
     startTime: Date(Date.now())
 };
-
-if (CONDITION === 2){
-    RANGE_UP = 10;
-    RANGE_LOW = -10
-} else {
+//Cond 0: increasing; Cond 1: decreasing; Cond 2: constant
+if (CONDITION === 0){
     RANGE_UP = 48;
     RANGE_LOW = -48
+} else if (CONDITION === 1){
+    RANGE_UP = 67;
+    RANGE_LOW = -67
+} else {
+    RANGE_UP = 30;
+    RANGE_LOW = -30
 }
 
 
@@ -237,9 +240,9 @@ If you get any of the questions incorrect, you will be brought back to the instr
             {
                 prompt: "What is the range of node values?",
                 options: ['$0 to $50',
-                    '$-10 to $10',
+                    '$-30 to $30',
                     '$-48 to $48',
-                    '$-100 to $100'],
+                    '$-67 to $67'],
                 horizontal: false,
                 required: true
             },
@@ -270,10 +273,12 @@ If you get any of the questions incorrect, you will be brought back to the instr
         data: {
             correct: {
                 Q0: function() {
-                    if (CONDITION===2) {
-                        return '$-10 to $10'
-                    } else {
+                    if (CONDITION===0) {
                         return '$-48 to $48'
+                    } else if (CONDITION===1) {
+                        return '$-67 to $67'
+                    } else {
+                        return '$-30 to $30'
                     }},
                 Q1: '$1',
                 Q2: 'The better I perform the higher my bonus will be.',
