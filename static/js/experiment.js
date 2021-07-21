@@ -2,7 +2,7 @@ var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_I
     TRIALS_ACTION, NUM_TRIALS, RANGE_UP, RANGE_LOW, calculateBonus, createStartButton, delay, getActionTrials, getTrainingTrials,
     initializeExperiment, loadTimeout, psiturk, saveData, slowLoad;
 
-DEBUG = true; // change this to false before running the experiment
+DEBUG = false; // change this to false before running the experiment
 
 if (DEBUG) {
     CONDITION = parseInt(window.prompt('condition 0-2', 0));
