@@ -41,7 +41,7 @@ psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
 PARAMS = {
     inspectCost: 1,
     bonusRate: 0.002,
-    CODE: ['MEERKAT'],
+    CODE: ['HAMSTER'],
     startTime: Date(Date.now())
 };
 //Cond 0: increasing; Cond 1: decreasing; Cond 2: constant
