@@ -1,7 +1,7 @@
 var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_INNER_REVEALED, TRIALS_TRAINING,
     TRIALS_ACTION, NUM_TRIALS, NUM_STROOP_TRIALS, RANGE_UP, RANGE_LOW, calculateBonus, createStartButton, delay,
     getActionTrials, getTrainingTrialsIncreasing, getStroopTrials, initializeExperiment, loadTimeout, psiturk,
-    saveData, slowLoad, TRIALS_PRACTICE, getTrainingTrialsConstant;
+    saveData, slowLoad, TRIALS_PRACTICE, getTrainingTrialsConstant, stroopBONUS;
 
 DEBUG = true; // change this to false before running the experiment
 
@@ -37,6 +37,8 @@ getTrainingTrials = void 0;
 getActionTrials = void 0;
 
 getStroopTrials = void 0;
+
+stroopBONUS = 0;
 
 // Convert MDP trials to stroop trials
 MDP_TO_STROOP_CONVERSION = 7;
@@ -214,7 +216,7 @@ initializeExperiment = function () {
 
                 `<h1> Welcome! </h1>
 <div style="text-align: left">
-<li>In this HIT, you will play ${NUM_TRIALS} rounds of the <em>Web of Cash</em> game.</li>
+<li>In this HIT, you will play ${NUM_TRIALS*2} rounds of the <em>Web of Cash</em> game.</li>
 <li>First you will be given the instructions and answer some questions to check your understanding of the game.</li>
 <li>The whole HIT will take about 15 minutes.</li>
 <li>The better you perform, the higher your bonus will be (up to $5.00!).</li>
@@ -304,7 +306,7 @@ node.</li>
 <li>There will be ${NUM_TRIALS} trials and on every round the rewards behind each node will be different. So you have to make a new plan every time</li>
 <li>Practice makes perfect! You can get better at planning through practice.</li>
 <li>You will receive a base pay of $1.50 regardless of your performance.</li>
-<li>Your bonus depends on your performance. You will receive 2cents for every point. </li>
+<li>Your bonus depends on your performance. You will receive 0.2cents for every point. </li>
 <li>Therefore, The more money the spider gets, the bigger your bonus will be!</li>
 </div>`,
                 `<h1> Practice trials </h1>
@@ -327,7 +329,9 @@ In this game, you will be shown a word on the screen whose letters have a certai
 
 <br><br>
 
-Your task is simply to <strong>report the color of the text as fast as possible</strong>. The color of the text can be one of <span style="color:red; font-weight:bold">red</span>, <span style="color:blue; font-weight:bold">blue</span>, <span style="color:green; font-weight:bold">green</span> or <span style="color:yellow; font-weight:bold; text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black, 0 -0.07em black;">yellow</span>. Accordingly, you must press the corresponding key to report the color you see:
+Your task is simply to <strong>report the color of the text as fast as possible</strong>.
+<br><br>
+The color of the text can be one of <span style="color:red; font-weight:bold">red</span>, <span style="color:blue; font-weight:bold">blue</span>, <span style="color:green; font-weight:bold">green</span> or <span style="color:yellow; font-weight:bold; text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black, 0 -0.07em black;">yellow</span>. Accordingly, you must press the corresponding key to report the color you see:
 <br> <br>
 <ul style="list-style:none">
     <li><code>R</code> - respond with color <span style="color:red; font-weight:bold">RED</span></li>
@@ -342,6 +346,8 @@ Examples:
     <li><span style="color:green; font-weight:bold">GREEN</span> - correct answer is <code>G</code></li>
     <li><span style="color:blue; font-weight:bold">SHORT</span> - correct answer is <code>B</code></li>
 </ul>
+<br><br>
+ You will receive 10 points for each correct answer! You will receive 0.2cent bonus for every point collected.
 <br><br>
 Click 'Next' when you are ready to start!
 `
@@ -525,6 +531,8 @@ If you get any of the questions incorrect, you will be brought back to the instr
             $('#stroop-text').hide();
             console.log(data);
             if (data.response.toLowerCase() === data.correct_response.toLowerCase()) {
+                stroopBONUS += 10;
+                console.log("stroopBONUS", stroopBONUS)
                 $('#correct').show();
             } else {
                 $('#wrong').show();
@@ -585,6 +593,36 @@ Move with the arrow keys.`,
         layout: STRUCTURE.layout,
         initial: STRUCTURE.initial,
         num_trials: NUM_TRIALS*2,
+        trialCount: function () {
+            return trialCount;
+        },
+        on_finish: function () {
+            return trialCount += 1;
+        }
+    };
+
+        let training_trial_increasing_stroop = {
+        type: 'mouselab-mdp',
+        blockName: 'training',
+        stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
+        stateClickCost: function () {
+            return 1;
+        },
+        timeline: (function () {
+            return getTrainingTrialsIncreasing(NUM_TRIALS);
+        })(),
+        // startScore: 50,
+        //centerMessage: 'Demo trial',
+        playerImageScale: 0.3,
+        size: 120, // determines the size of states, text, etc...
+        playerImage: 'static/images/spider.png',
+
+        lowerMessage: `Click on the nodes to reveal their values.<br>
+Move with the arrow keys.`,
+        graph: STRUCTURE.graph,
+        layout: STRUCTURE.layout,
+        initial: STRUCTURE.initial,
+        num_trials: NUM_TRIALS,
         trialCount: function () {
             return trialCount;
         },
@@ -684,17 +722,17 @@ Please briefly answer the questions below before you submit the HIT.`;
     };
 
 
-    // if (CONDITION === 0) {
-    //     experiment_timeline = [introduction_exp, mouselab_instruct_loop, proceed_to_trials, training_trial_increasing_a, training_trial_increasing_b, demographics, finish];
-    // } else if (CONDITION === 1) {
-    //     experiment_timeline = [introduction_control, instructions_stroop, stroop_trials, transition_stroop_to_mouselab, instructions_mouselab, mouselab_instruct_loop, training_trial_increasing_b, demographics, finish];
-    // }
-
     if (CONDITION === 0) {
-        experiment_timeline = [practice_trial_1, practice_trial_2, training_trial_increasing_a, training_trial_increasing_b, demographics, finish];
+        experiment_timeline = [introduction_exp, mouselab_instruct_loop, proceed_to_trials, training_trial_increasing_a, training_trial_increasing_b, demographics, finish];
     } else if (CONDITION === 1) {
-        experiment_timeline = [mouselab_instruct_loop, training_trial_increasing_a, demographics, finish];
+        experiment_timeline = [introduction_control, instructions_stroop, stroop_trials, transition_stroop_to_mouselab, mouselab_instruct_loop, training_trial_increasing_stroop, demographics, finish];
     }
+
+    // if (CONDITION === 0) {
+    //     experiment_timeline = [practice_trial_1, practice_trial_2, training_trial_increasing_a, training_trial_increasing_b, demographics, finish];
+    // } else if (CONDITION === 1) {
+    //     experiment_timeline = [mouselab_instruct_loop, training_trial_increasing_a, demographics, finish];
+    // }
 
 
 // ================================================ #
@@ -720,7 +758,7 @@ Please briefly answer the questions below before you submit the HIT.`;
 
     calculateBonus = function () {
         var bonus;
-        bonus = SCORE * PARAMS.bonusRate;
+        bonus = (stroopBONUS + SCORE) * PARAMS.bonusRate;
         bonus = (Math.round(bonus * 100)) / 100; // round to nearest cent
         return Math.min(Math.max(0, bonus), MAX_AMOUNT);
     };

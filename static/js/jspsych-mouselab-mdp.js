@@ -767,7 +767,7 @@ Press <code>space</code> to return to your corporeal form.`);
         }
 
         drawScore(score) {
-            $('#mouselab-score').html('$' + score);
+            $('#mouselab-score').html(+ score + ' points');
             return $('#mouselab-score').css('color', redGreen(score));
         }
 
@@ -912,7 +912,7 @@ It took you ` + this.data.displayed_time + ` seconds to get to the edge of the w
 <br>
 <b>Press</b> <code>space</code> <b>to continue.</b>`);
             }
-            $('.mouselab-score').html('$' + this.data.score);
+            $('.mouselab-score').html(this.data.score + ' points');
             $('.mouselab-score').css('color', redGreen(this.data.score));
             $('.mouselab-score').css('font-weight', 'bold');
             return this.keyListener = jsPsych.pluginAPI.getKeyboardResponse({
@@ -925,6 +925,7 @@ It took you ` + this.data.displayed_time + ` seconds to get to the edge of the w
                     //     this.addScore(Math.max(Math.round(3.0 - this.data.displayed_time), 0));
                     // }
                     this.data.trialTime = getTime() - this.initTime;
+                    this.display.innerHTML = '';
                     this.display.innerHTML = '';
                     return jsPsych.finishTrial(this.data);
                 }
