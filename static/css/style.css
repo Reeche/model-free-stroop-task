@@ -29,6 +29,93 @@
   text-align: center;
 }
 
+/* Stroop Trials */
+
+.stroop-trial {
+    background-color: black;
+    align-content: center;
+    text-align: center;
+    float: top;
+    margin-top: 100px;
+    width: 60%;
+    height: 60%;
+    line-height: 600px;
+}
+
+.stroop-red {
+    font-size: 70px;
+    color: red;
+    float: inside;
+    user-select: none;
+    position: relative;
+    font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, sans-serif;
+}
+.stroop-green {
+    font-size: 70px;
+    user-select: none;
+    color: green;
+    float: inside;
+    position: relative;
+    font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
+}
+.stroop-blue {
+    font-size: 70px;
+    color: blue;
+    float: inside;
+    user-select: none;
+    position: relative;
+    font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica, "Trebuchet MS", sans-serif;
+}
+.stroop-yellow {
+    font-size: 70px;
+    color: yellow;
+    float: inside;
+    user-select: none;
+    position: relative;
+    font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.stroop-correct {
+    font-size: 50px;
+    color: green;
+    user-select: none;
+    background-color: #D3D3D3;
+    border-color: grey;
+    text-align: center;
+    opacity: 0.7;
+    border-width: 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    height: 100px;
+    width: 35%;
+    margin-top: 18%;
+    margin-left: 33%;
+    vertical-align: middle;
+    horiz-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.stroop-wrong {
+    font-size: 50px;
+    color: red;
+    user-select: none;
+    background-color: #D3D3D3;
+    border-color: grey;
+    text-align: center;
+    border-width: 20px;
+    border-radius: 20px;
+    opacity: 0.7;
+    font-weight: bold;
+    height: 100px;
+    width: 35%;
+    margin-top: 18%;
+    margin-left: 33%;
+    vertical-align: middle;
+    horiz-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 /*#jspsych-target {
   margin-top: -20px;
 }*/
@@ -45,40 +132,54 @@
 }
 
 .mouselab-header {
-    // margin: 0;
+    margin: 0;
     float: left;
+    margin-bottom: 0.5em;
+    font-size: 20pt;
+}
+.mouselab-center {
+    margin: 0;
+    float: top;
     margin-bottom: 0.5em;
     font-size: 20pt;
 }
 
 .mouselab-prompt {
-    // margin: 0;
-    width: 100%;
+    margin-top: 2.5em;
+    width: 750px;
     height: 100px;
-    // text-align: center;
-    // margin-bottom: 0.5em;
-    // font-size: 20pt;
+    text-align: center;
+    margin-bottom: 0.5em;
+    font-size: 20pt;
 }
 
 #mouselab-msg-left {
   width: 20%;
   text-align: left;
+  margin-top: 2.5em;
 }
 
 #mouselab-msg-right {
     width: 30%;
-    text-align: left;
+    text-align: right;
+    margin-top: 2.5em;
 }
 #mouselab-msg-center {
     width: 50%;
     text-align: center;
+    margin-top: 2.5em;
 }
 
 .mouselab-msg-bottom {
-    width: 100%;
+    width: 750px;
     font-size: 16pt;
     text-align: center;
-    margin-top:-8px;
+    margin-top: 8px;
+}
+
+.jspsych-content {
+    margin-top: 50px;
+    text-align: center;
 }
 
 .alert {
@@ -154,12 +255,12 @@ img.display {
 }
 
 @-webkit-keyframes animatebottom {
-  from { bottom:-40px; opacity:0 } 
+  from { bottom:-40px; opacity:0 }
   to { bottom:0px; opacity:1 }
 }
 
-@keyframes animatebottom { 
-  from{ bottom:-40px; opacity:0 } 
+@keyframes animatebottom {
+  from{ bottom:-40px; opacity:0 }
   to{ bottom:0; opacity:1 }
 }
 
@@ -172,6 +273,9 @@ img.display {
 /********************************************************************/
 /* Generic element styles                                           */
 /********************************************************************/
+html {
+    height: 100%;
+}
 
 body {
     padding:0px;
@@ -180,6 +284,7 @@ body {
     color: black;
     font-weight: 300;
     font-size: 13pt;
+    height: 100%;
 }
 
 h1 h2 h3 h4 {

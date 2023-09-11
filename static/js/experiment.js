@@ -7,13 +7,13 @@ DEBUG = true; // change this to false before running the experiment
 
 if (DEBUG) {
     CONDITION = parseInt(window.prompt('condition 0-1', 0));
-    NUM_TRIALS = 2;
-    NUM_STROOP_TRIALS = NUM_TRIALS * 7;
+    NUM_TRIALS = 3;
+    NUM_STROOP_TRIALS = NUM_TRIALS * 3;
     //JUMP_TO_BLOCK = window.prompt('skip to block number?', 0);
 } else {
     CONDITION = parseInt(condition);
     NUM_TRIALS = 30;
-    NUM_STROOP_TRIALS = NUM_TRIALS * 7;
+    NUM_STROOP_TRIALS = NUM_TRIALS * 3;
 }
 
 JUMP_TO_BLOCK = 0;
@@ -51,16 +51,9 @@ PARAMS = {
     CODE: ['HAMSTER'],
     startTime: Date(Date.now())
 };
-if (CONDITION === 0) {
-    RANGE_UP = 48;
-    RANGE_LOW = -48
-} else if (CONDITION === 1) {
-    RANGE_UP = 67;
-    RANGE_LOW = -67
-} else {
-    RANGE_UP = 30;
-    RANGE_LOW = -30
-}
+RANGE_UP = 48;
+RANGE_LOW = -48
+
 
 
 saveData = function () {
@@ -311,7 +304,8 @@ node.</li>
 <li>There will be ${NUM_TRIALS} trials and on every round the rewards behind each node will be different. So you have to make a new plan every time</li>
 <li>Practice makes perfect! You can get better at planning through practice.</li>
 <li>You will receive a base pay of $1.50 regardless of your performance.</li>
-<li>Your bonus depends on your performance. The more money the spider gets, the bigger your bonus will be!</li>
+<li>Your bonus depends on your performance. You will receive 2cents for every point. </li>
+<li>Therefore, The more money the spider gets, the bigger your bonus will be!</li>
 </div>`,
                 `<h1> Practice trials </h1>
 
@@ -355,7 +349,7 @@ Click 'Next' when you are ready to start!
         }
     };
 
-    let practice_trials = {
+    let practice_trial_1 = {
         type: 'mouselab-mdp',
         blockName: 'practice',
         stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
@@ -363,9 +357,9 @@ Click 'Next' when you are ready to start!
             return 1;
         },
         timeline: (function () {
-            return getTrainingTrialsConstant(2);
+            return getTrainingTrialsConstant(1);
         })(),
-        // startScore: 50,
+        //startScore: 50,
         centerMessage: 'Practice trial',
         playerImageScale: 0.3,
         size: 120, // determines the size of states, text, etc...
@@ -380,8 +374,36 @@ Click 'Next' when you are ready to start!
             return trialCount;
         },
         on_finish: function () {
-            resetScore();
             return trialCount += 1;
+        }
+    };
+    let practice_trial_2 = {
+        type: 'mouselab-mdp',
+        blockName: 'practice',
+        stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
+        stateClickCost: function () {
+            return 1;
+        },
+        timeline: (function () {
+            return getTrainingTrialsConstant(1);
+        })(),
+        //startScore: 50,
+        centerMessage: 'Practice trial',
+        playerImageScale: 0.3,
+        size: 120, // determines the size of states, text, etc...
+        playerImage: 'static/images/spider.png',
+
+        lowerMessage: `Click on the nodes to reveal their values.<br> Move with the arrow keys.`,
+        graph: STRUCTURE.graph,
+        layout: STRUCTURE.layout,
+        initial: STRUCTURE.initial,
+        num_trials: 2,
+        trialCount: function () {
+            return trialCount;
+        },
+        on_finish: function () {
+            SCORE = 50;
+            return trialCount = 0;
         }
     };
     let instructions_after_practice = {
@@ -439,7 +461,7 @@ If you get any of the questions incorrect, you will be brought back to the instr
         }
     };
     let mouselab_instruct_loop = {
-        timeline: [instructions_mouselab, practice_trials, instructions_after_practice, quiz],
+        timeline: [instructions_mouselab, practice_trial_1, practice_trial_2, instructions_after_practice, quiz],
         loop_function: function (data) {
             var resp_id, response, responses;
             responses = data.last(1).values()[0].response;
@@ -497,7 +519,7 @@ If you get any of the questions incorrect, you will be brought back to the instr
         post_trial_gap: 500,
         type: 'html-keyboard-response',
         choices: ["r", "g", "b", "y"],
-        timeline: getStroopTrials(NUM_TRIALS / 3, NUM_TRIALS / 3, NUM_TRIALS / 3),
+        timeline: getStroopTrials(NUM_TRIALS, NUM_TRIALS, NUM_TRIALS),
         css_classes: ['stroop-trial'],
         on_finish: function (data) {
             $('#stroop-text').hide();
@@ -521,18 +543,19 @@ If you get any of the questions incorrect, you will be brought back to the instr
         timeline: (function () {
             return getTrainingTrialsIncreasing(NUM_TRIALS);
         })(),
-        startScore: 50,
+        //startScore: 50,
         //centerMessage: 'Demo trial',
+        // resetGlobalScore: true,
+        // resetGlobalScoreTo: 50,
         playerImageScale: 0.3,
         size: 120, // determines the size of states, text, etc...
         playerImage: 'static/images/spider.png',
-
         lowerMessage: `Click on the nodes to reveal their values.<br>
 Move with the arrow keys.`,
         graph: STRUCTURE.graph,
         layout: STRUCTURE.layout,
         initial: STRUCTURE.initial,
-        num_trials: NUM_TRIALS,
+        num_trials: NUM_TRIALS*2,
         trialCount: function () {
             return trialCount;
         },
@@ -561,7 +584,7 @@ Move with the arrow keys.`,
         graph: STRUCTURE.graph,
         layout: STRUCTURE.layout,
         initial: STRUCTURE.initial,
-        num_trials: NUM_TRIALS,
+        num_trials: NUM_TRIALS*2,
         trialCount: function () {
             return trialCount;
         },
@@ -664,13 +687,13 @@ Please briefly answer the questions below before you submit the HIT.`;
     // if (CONDITION === 0) {
     //     experiment_timeline = [introduction_exp, mouselab_instruct_loop, proceed_to_trials, training_trial_increasing_a, training_trial_increasing_b, demographics, finish];
     // } else if (CONDITION === 1) {
-    //     experiment_timeline = [introduction_control, instructions_stroop, stroop_trials, transition_stroop_to_mouselab, instructions_mouselab, training_trial_increasing_b, demographics, finish];
+    //     experiment_timeline = [introduction_control, instructions_stroop, stroop_trials, transition_stroop_to_mouselab, instructions_mouselab, mouselab_instruct_loop, training_trial_increasing_b, demographics, finish];
     // }
 
     if (CONDITION === 0) {
-        experiment_timeline = [practice_trials, training_trial_increasing_a, training_trial_increasing_b, demographics, finish];
+        experiment_timeline = [practice_trial_1, practice_trial_2, training_trial_increasing_a, training_trial_increasing_b, demographics, finish];
     } else if (CONDITION === 1) {
-        experiment_timeline = [introduction_control, instructions_stroop, stroop_trials, transition_stroop_to_mouselab, instructions_mouselab, training_trial_increasing_b, demographics, finish];
+        experiment_timeline = [mouselab_instruct_loop, training_trial_increasing_a, demographics, finish];
     }
 
 

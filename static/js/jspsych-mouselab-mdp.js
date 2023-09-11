@@ -156,6 +156,8 @@ jsPsych.plugins['mouselab-mdp'] = (function () {
             this.updateDisplay = this.updateDisplay.bind(this);
             // Constructs the visual display.
             this.buildMap = this.buildMap.bind(this);
+           // this.resetGlobalScoreTo = this.resetGlobalScoreTo.bind(this);
+            //this.resetGlobalScore = this.resetGlobalScore.bind(this);
             // ---------- ENDING THE TRIAL ---------- #
 
             // Creates a button allowing user to move to the next trial.
@@ -244,6 +246,10 @@ jsPsych.plugins['mouselab-mdp'] = (function () {
             SIZE = size;
             _.extend(this, config);
             checkObj(this);
+
+            if (this.resetGlobalScore === true) {
+                this.resetGlobalScoreToValue(this.resetGlobalScoreTo);
+            }
             if (this.stateLabels === 'reward') {
                 this.stateLabels = this.stateRewards;
             }
@@ -753,6 +759,10 @@ Press <code>space</code> to return to your corporeal form.`);
 
         resetScore() {
             this.data.score = 0;
+            return this.drawScore(SCORE.toFixed(2));
+        }
+        resetGlobalScoreToValue(v) {
+            SCORE = v;
             return this.drawScore(SCORE.toFixed(2));
         }
 
