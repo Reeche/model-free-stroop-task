@@ -17,15 +17,15 @@ allow_repeats = false
 database_url = sqlite:///participants.db
 table_name = participants
 
-# test postgres
-#database_url = postgres://ajlxfqvgiueglq:1fae48960483472204090a0ea4911533361ebee127f1d1d32c7f30a788f01a2e@ec2-54-220-229-215.eu-west-1.compute.amazonaws.com:5432/d5lcbukdaspu3q
-#table_name = participants
-# heroku pg:promote HEROKU_POSTGRESQL_SILVER_URL
+test postgres
+database_url = postgres://krlzmrlkkggyer:bc618f429a058084b08a507970982dffa0db4cc19be1dc142a0387943290f2e4@ec2-54-73-22-169.eu-west-1.compute.amazonaws.com:5432/d1rgcj7fsu1k00
+table_name = participants
+heroku pg:promote DATABASE_URL
 
 # mouselab postgres
-#database_url = postgres://yfocikxnxzrsyx:a2650e7f24258f8fcb3cd0f7cf329a4f2b238b254f4fc0252aa65fa8f1125f30@ec2-54-247-107-109.eu-west-1.compute.amazonaws.com:5432/ddfku1b5k7j56b
-#table_name = participants
-# heroku pg:promote HEROKU_POSTGRESQL_COPPER_URL
+# database_url = postgres://yfocikxnxzrsyx:a2650e7f24258f8fcb3cd0f7cf329a4f2b238b254f4fc0252aa65fa8f1125f30@ec2-54-247-107-109.eu-west-1.compute.amazonaws.com:5432/ddfku1b5k7j56b
+# table_name = participants
+# heroku pg:promote HEROKU_POSTGRESQL_GREEN_URL
 
 [Server Parameters]
 host = 0.0.0.0
@@ -40,8 +40,8 @@ secret_key = 'this is my secret key which is hard to guess, i should change this
 
 
 [Task Parameters]
-experiment_code_version = threecond_v4_full
-num_conds = 3
+experiment_code_version = model_free_stroop_task
+num_conds = 2
 num_counters = 1
 
 [Shell Parameters]
