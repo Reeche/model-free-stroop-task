@@ -17,10 +17,10 @@ allow_repeats = false
 database_url = sqlite:///participants.db
 table_name = participants
 
-test postgres
-database_url = postgres://krlzmrlkkggyer:bc618f429a058084b08a507970982dffa0db4cc19be1dc142a0387943290f2e4@ec2-54-73-22-169.eu-west-1.compute.amazonaws.com:5432/d1rgcj7fsu1k00
-table_name = participants
-heroku pg:promote DATABASE_URL
+# test postgres
+# database_url = postgres://krlzmrlkkggyer:bc618f429a058084b08a507970982dffa0db4cc19be1dc142a0387943290f2e4@ec2-54-73-22-169.eu-west-1.compute.amazonaws.com:5432/d1rgcj7fsu1k00
+# table_name = participants
+# heroku pg:promote DATABASE_URL
 
 # mouselab postgres
 # database_url = postgres://yfocikxnxzrsyx:a2650e7f24258f8fcb3cd0f7cf329a4f2b238b254f4fc0252aa65fa8f1125f30@ec2-54-247-107-109.eu-west-1.compute.amazonaws.com:5432/ddfku1b5k7j56b
