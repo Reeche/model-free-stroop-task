@@ -3,7 +3,7 @@ var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_I
     getActionTrials, getTrainingTrialsIncreasing, getStroopTrials, initializeExperiment, loadTimeout, psiturk,
     saveData, slowLoad, TRIALS_PRACTICE, getTrainingTrialsConstant, stroopBONUS;
 
-DEBUG = true; // change this to false before running the experiment
+DEBUG = false; // change this to false before running the experiment
 
 if (DEBUG) {
     CONDITION = parseInt(window.prompt('condition 0-1', 0));
@@ -12,7 +12,7 @@ if (DEBUG) {
     //JUMP_TO_BLOCK = window.prompt('skip to block number?', 0);
 } else {
     CONDITION = parseInt(condition);
-    NUM_TRIALS = 30;
+    NUM_TRIALS = 15;
     NUM_STROOP_TRIALS = NUM_TRIALS * 3;
 }
 
