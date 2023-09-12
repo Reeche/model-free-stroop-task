@@ -50,7 +50,7 @@ psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
 PARAMS = {
     inspectCost: 1,
     bonusRate: 0.002,
-    CODE: ['HAMSTER'],
+    CODE: ['hfrabjvd'],
     startTime: Date(Date.now())
 };
 RANGE_UP = 48;
@@ -219,7 +219,7 @@ initializeExperiment = function () {
 <li>In this HIT, you will play ${NUM_TRIALS*2} rounds of the <em>Web of Cash</em> game.</li>
 <li>First you will be given the instructions and answer some questions to check your understanding of the game.</li>
 <li>The whole HIT will take about 15 minutes.</li>
-<li>The better you perform, the higher your bonus will be (up to $5.00!).</li>
+<li>The better you perform, the higher your bonus will be (up to $3.80!).</li>
 
 </div>
 
@@ -243,7 +243,7 @@ initializeExperiment = function () {
 <li>First, you will play ${NUM_STROOP_TRIALS} rounds of the <em>Color Word</em> game. After these, you will play ${NUM_TRIALS} rounds of the <em>Web of Cash</em> game.</li>
 <li>Before each game, you will be given instructions on how to play the game. You may also have to answer some questions to check your understanding of the game.</li>
 <li>The whole HIT will take about 15 minutes.</li>
-<li>The better you perform, the higher your bonus will be (up to $5.00!).</li>
+<li>The better you perform, the higher your bonus will be (up to $3.80!).</li>
 
 </div>
 
