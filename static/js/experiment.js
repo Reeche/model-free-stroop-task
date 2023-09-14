@@ -40,9 +40,6 @@ getStroopTrials = void 0;
 
 stroopBONUS = 0;
 
-// Convert MDP trials to stroop trials
-MDP_TO_STROOP_CONVERSION = 7;
-
 trialCount = 0;
 
 psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
@@ -305,7 +302,7 @@ node.</li>
 <div style="text-align: left">
 <li>There will be ${NUM_TRIALS} trials and on every round the rewards behind each node will be different. So you have to make a new plan every time</li>
 <li>Practice makes perfect! You can get better at planning through practice.</li>
-<li>You will receive a base pay of $1.50 regardless of your performance.</li>
+<li>You will receive a base pay of $2.00 regardless of your performance.</li>
 <li>Your bonus depends on your performance. You will receive 0.2cents for every point. </li>
 <li>Therefore, The more money the spider gets, the bigger your bonus will be!</li>
 </div>`,
