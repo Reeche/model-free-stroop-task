@@ -1,19 +1,19 @@
 var CONDITION, DEBUG, JUMP_TO_BLOCK, PARAMS, SCORE, STRUCTURE_TRAINING, TRIALS_INNER_REVEALED, TRIALS_TRAINING,
     TRIALS_ACTION, NUM_TRIALS, NUM_STROOP_TRIALS, RANGE_UP, RANGE_LOW, calculateBonus, createStartButton, delay,
     getActionTrials, getTrainingTrialsIncreasing, getStroopTrials, initializeExperiment, loadTimeout, psiturk,
-    saveData, slowLoad, TRIALS_PRACTICE, getTrainingTrialsConstant, stroopBONUS;
+    saveData, slowLoad, TRIALS_PRACTICE, getTrainingTrialsConstant, stroopBONUS, BONUS, MAX_AMOUNT;
 
 DEBUG = false; // change this to false before running the experiment
 
 if (DEBUG) {
     CONDITION = parseInt(window.prompt('condition 0-1', 0));
     NUM_TRIALS = 3;
-    NUM_STROOP_TRIALS = NUM_TRIALS * 3;
+    NUM_STROOP_TRIALS = NUM_TRIALS * 6;
     //JUMP_TO_BLOCK = window.prompt('skip to block number?', 0);
 } else {
     CONDITION = parseInt(condition);
     NUM_TRIALS = 15;
-    NUM_STROOP_TRIALS = NUM_TRIALS * 3;
+    NUM_STROOP_TRIALS = NUM_TRIALS * 6;
 }
 
 JUMP_TO_BLOCK = 0;
@@ -28,7 +28,7 @@ SCORE = 50;
 
 BONUS = 0;
 
-MAX_AMOUNT = 5;
+MAX_AMOUNT = 3.80;
 
 calculateBonus = void 0;
 
@@ -46,8 +46,8 @@ psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 PARAMS = {
     inspectCost: 1,
-    bonusRate: 0.002,
-    CODE: ['hfrabjvd'],
+    bonusRate: 0.001,
+    CODE: ['edhjgwiwsu'],
     startTime: Date(Date.now())
 };
 RANGE_UP = 48;
@@ -303,7 +303,7 @@ node.</li>
 <li>There will be ${NUM_TRIALS} trials and on every round the rewards behind each node will be different. So you have to make a new plan every time</li>
 <li>Practice makes perfect! You can get better at planning through practice.</li>
 <li>You will receive a base pay of $2.00 regardless of your performance.</li>
-<li>Your bonus depends on your performance. You will receive 0.2cents for every point. </li>
+<li>Your bonus depends on your performance. You will receive 0.1cents for every point. </li>
 <li>Therefore, The more money the spider gets, the bigger your bonus will be!</li>
 </div>`,
                 `<h1> Practice trials </h1>
