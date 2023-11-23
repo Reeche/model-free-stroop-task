@@ -300,7 +300,7 @@ node.</li>
                 `<h1> Additional Information </h1>
 
 <div style="text-align: left">
-<li>There will be ${NUM_TRIALS} trials and on every round the rewards behind each node will be different. So you have to make a new plan every time</li>
+<li>On every round the rewards behind each node will be different. So you have to make a new plan every time</li>
 <li>Practice makes perfect! You can get better at planning through practice.</li>
 <li>You will receive a base pay of $2.00 regardless of your performance.</li>
 <li>Your bonus depends on your performance. You will receive 0.1cents for every point. </li>
@@ -598,35 +598,35 @@ Move with the arrow keys.`,
         }
     };
 
-        let training_trial_increasing_stroop = {
-        type: 'mouselab-mdp',
-        blockName: 'training',
-        stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
-        stateClickCost: function () {
-            return 1;
-        },
-        timeline: (function () {
-            return getTrainingTrialsIncreasing(NUM_TRIALS);
-        })(),
-        // startScore: 50,
-        //centerMessage: 'Demo trial',
-        playerImageScale: 0.3,
-        size: 120, // determines the size of states, text, etc...
-        playerImage: 'static/images/spider.png',
+    let training_trial_increasing_stroop = {
+    type: 'mouselab-mdp',
+    blockName: 'training',
+    stateDisplay: 'click', // one of 'never', 'hover', 'click', 'always'
+    stateClickCost: function () {
+        return 1;
+    },
+    timeline: (function () {
+        return getTrainingTrialsIncreasing(NUM_TRIALS);
+    })(),
+    // startScore: 50,
+    //centerMessage: 'Demo trial',
+    playerImageScale: 0.3,
+    size: 120, // determines the size of states, text, etc...
+    playerImage: 'static/images/spider.png',
 
-        lowerMessage: `Click on the nodes to reveal their values.<br>
+    lowerMessage: `Click on the nodes to reveal their values.<br>
 Move with the arrow keys.`,
-        graph: STRUCTURE.graph,
-        layout: STRUCTURE.layout,
-        initial: STRUCTURE.initial,
-        num_trials: NUM_TRIALS,
-        trialCount: function () {
-            return trialCount;
-        },
-        on_finish: function () {
-            return trialCount += 1;
-        }
-    };
+    graph: STRUCTURE.graph,
+    layout: STRUCTURE.layout,
+    initial: STRUCTURE.initial,
+    num_trials: NUM_TRIALS,
+    trialCount: function () {
+        return trialCount;
+    },
+    on_finish: function () {
+        return trialCount += 1;
+    }
+};
 
     let transition_stroop_to_mouselab = {
         type: 'instructions',
