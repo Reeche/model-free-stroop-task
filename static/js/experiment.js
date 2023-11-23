@@ -344,8 +344,7 @@ Examples:
     <li><span style="color:blue; font-weight:bold">SHORT</span> - correct answer is <code>B</code></li>
 </ul>
 <br><br>
- You will receive 20 points for each correct answer! 
- You will receive 0.1cent bonus for every point collected.
+You will receive 2cent for every correct answer!
 <br><br>
 Click 'Next' when you are ready to start!
 `
