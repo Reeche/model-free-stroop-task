@@ -344,7 +344,8 @@ Examples:
     <li><span style="color:blue; font-weight:bold">SHORT</span> - correct answer is <code>B</code></li>
 </ul>
 <br><br>
- You will receive 10 points for each correct answer! You will receive 0.2cent bonus for every point collected.
+ You will receive 20 points for each correct answer! 
+ You will receive 0.1cent bonus for every point collected.
 <br><br>
 Click 'Next' when you are ready to start!
 `
@@ -528,7 +529,7 @@ If you get any of the questions incorrect, you will be brought back to the instr
             $('#stroop-text').hide();
             console.log(data);
             if (data.response.toLowerCase() === data.correct_response.toLowerCase()) {
-                stroopBONUS += 10;
+                stroopBONUS += 20;
                 console.log("stroopBONUS", stroopBONUS)
                 $('#correct').show();
             } else {
